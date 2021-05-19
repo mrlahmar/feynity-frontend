@@ -1,65 +1,73 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Link from 'next/link'
+import Footer from '../components/Footer'
+import HeroSection from '../styles/IndexStyles/HeroSection'
+import FeaturesSection from '../styles/IndexStyles/FeaturesSection'
+import ExploreSection from '../styles/IndexStyles/ExploreSection'
+import PlatformsSection from '../styles/IndexStyles/PlatformsSection'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <main>
+        <HeroSection>
+          <div className="container">
+            <div className="left-col">
+              <h1>Find the best learning <span>groups</span> on the Internet</h1>
+              <p>Lorem ipsum dolor sit amet consectetur.</p>
+              <Link href="/signup"><a className="primary-cta">Join for Free</a></Link>
+            </div>
+            <img src="index/hero-img.png" alt="Hero Image" />
+          </div>
+        </HeroSection>
+        
+        <FeaturesSection>
+          <div className="container">
+            <h2>Here to improve the Experience</h2>
+            <div className="features">
+              <div className="feature">
+                <img className="first-feature" src="index/feat1.svg" alt="Feature 1"/>
+                <p>Course Based Groups</p>
+              </div>
+              <div className="feature">
+                <img className="second-feature" src="index/feat2.svg" alt="Feature 2"/>
+                <p>Gamified Experience</p>
+              </div>
+              <div className="feature">
+                <img className="third-feature" src="index/feat3.svg" alt="Feature 3"/>
+                <p>Accountability partners</p>
+              </div>
+            </div>
+          </div>
+        </FeaturesSection>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <ExploreSection>
+          <div className="container">
+            <div className="right">
+              <h2>Explore the best learning groups</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, aut.</p>
+            </div>
+            <img src="index/explore.png" alt="Explore"/>
+          </div>
+        </ExploreSection>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <PlatformsSection>
+          <div className="container">
+            <h2>Platforms we support</h2>
+            <div className="platforms-imgs-container">
+              <img className="coursera" src="/platforms/coursera.png" alt="Coursera logo"/>
+              <img className="edx"  src="/platforms/edX.png" alt="edX logo"/>
+              <img className="udemy"  src="/platforms/udemy.png" alt="Udemy logo"/>
+              <img className="inlearning"  src="/platforms/inlearning.png" alt="Linkedin Learning logo"/>
+            </div>
+          </div>
+        </PlatformsSection>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+      <Footer />
+    </>
   )
 }
