@@ -1,17 +1,18 @@
 import Header from '../styles/Navbar'
 import Link from 'next/link'
-import {useState} from 'react'
+import {useContext, useState} from 'react'
+import {AuthContext} from '../context/AuthContext'
 
 const Navbar = () => {
-    const [open, setOpen] = useState(false)
-    const [logged, setLogged] = useState(false)
+    const [open, setOpen] = useState(false);
+    const [isAuthed, setIsAuthed] = useContext(AuthContext);
 
     return (
         <Header>
             <div className="container">
                 <img src="nav/ham-menu.svg" className="mobile-menu" alt="Open Navigation" onClick={() => {setOpen(!open)}}/>
                 <Link href="/"><a className="logo"><img src="nav/logo.svg" alt="Feynity logo" /></a></Link>
-                {logged
+                {isAuthed
                 ? <nav className={`logged ${open && "menu-btn"}`}>
                     <img src="nav/close-nav.svg" className="mobile-menu-exit" alt="Close Navigation" onClick={() => {setOpen(!open)}}/>
                     <ul className="primary-nav">

@@ -18,9 +18,9 @@ const Btn = styled.button`
     }
 `
 
-function Button({text}) {
+function Button({text, onClick}) {
     return (
-        <Btn>
+        <Btn type="submit">
             {text}
         </Btn>
     )

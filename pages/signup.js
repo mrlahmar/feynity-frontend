@@ -17,6 +17,29 @@ const Main = styled.main`
 `
 
 function signup() {
+    const registerUser = async event => {
+        event.preventDefault()
+
+        const res = await fetch(
+            'http://localhost:5000/api/v1/learners/signup',
+            {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: event.target.email.value,
+                    name: event.target.name.value,
+                    password: event.target.password.value,
+                    rpassword: event.target.repeatpassword.value
+                })
+            }
+        )
+    
+        const result = await res.json()
+        console.log(result);
+    }
+
     return (
         <>
             <Head>
@@ -25,9 +48,9 @@ function signup() {
             <Main>
                 <div className="container">
                     <h1>Sign Up</h1>
-                    <form action="/signup" method="post">
+                    <form onSubmit={registerUser}>
                         <Input name="email" type="email" label="Email *" placeholder="e.g name@example.com"/>
-                        <Input name="fullname" type="text" label="Full Name *" placeholder="e.g John Doe"/>
+                        <Input name="name" type="text" label="Full Name *" placeholder="e.g John Doe"/>
                         <Input name="password" type="password" label="Password *" placeholder="e.g ***********"/>
                         <Input name="repeatpassword" type="password" label="Repeat Password *" placeholder="e.g ***********"/>
                         <Button text="Sign Up"/>

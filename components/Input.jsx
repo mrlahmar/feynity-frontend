@@ -17,6 +17,7 @@ const Label = styled.label`
         border-radius: 10px;
         margin-bottom: 20px;
         text-indent: 15px;
+        outline: none;
     }
 
     input::-webkit-input-placeholder {
