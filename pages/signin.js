@@ -4,7 +4,8 @@ import Button from '../components/Button'
 import styled from 'styled-components'
 import {useRouter} from 'next/router'
 import { AuthContext } from '../context/AuthContext'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import withAuthForm from '../auth/withAuthForm'
 
 const Main = styled.main`
     margin: 82px auto 0;
@@ -19,10 +20,12 @@ const Main = styled.main`
     }
 `
 function signin() {
+    const [wentWrong, setWentWrong] = useState(false)
     const router = useRouter()
     const [isAuthed, setIsAuthed] = useContext(AuthContext)
 
     const signinUser = async event => {
+        setWentWrong(false)
         event.preventDefault()
 
         const res = await fetch(
@@ -39,14 +42,20 @@ function signin() {
             }
         )
     
-        const result = await res.json()
+        const user = await res.json()
 
-        if(result.hasOwnProperty('accessToken')) {
-            setIsAuthed(true)
-            router.push('/profile')
+        // User is authenticated
+        if(user.hasOwnProperty('accessToken')) {
+            setIsAuthed({
+                authed: true,
+                user
+            })
+            router.replace('/profile')
+            return;
         }
         
-        console.log(result);
+        // User is not authenticated
+        setWentWrong(true)
     }
 
     return (
@@ -57,6 +66,7 @@ function signin() {
             <Main>
                 <div className="container">
                     <h1>Sign In</h1>
+                    {wentWrong ? <Warning /> : <></>}
                     <form onSubmit={signinUser}>
                         <Input name="email" type="email" label="Email *" placeholder="e.g name@example.com"/>
                         <Input name="password" type="password" label="Password *" placeholder="e.g ***********"/>
@@ -68,4 +78,4 @@ function signin() {
     )
 }
 
-export default signin
+export default withAuthForm(signin)

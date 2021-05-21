@@ -179,6 +179,10 @@ const Header = styled.header`
             margin-right: 15px;
         }
 
+        .logout:hover {
+            cursor: pointer;
+        }
+
         span {
             color: #6573FF;
         }

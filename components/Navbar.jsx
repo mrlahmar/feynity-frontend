@@ -12,7 +12,7 @@ const Navbar = () => {
             <div className="container">
                 <img src="nav/ham-menu.svg" className="mobile-menu" alt="Open Navigation" onClick={() => {setOpen(!open)}}/>
                 <Link href="/"><a className="logo"><img src="nav/logo.svg" alt="Feynity logo" /></a></Link>
-                {isAuthed
+                {isAuthed.authed
                 ? <nav className={`logged ${open && "menu-btn"}`}>
                     <img src="nav/close-nav.svg" className="mobile-menu-exit" alt="Close Navigation" onClick={() => {setOpen(!open)}}/>
                     <ul className="primary-nav">
@@ -42,7 +42,7 @@ const Navbar = () => {
                             <img src="nav/profile-pic.png" alt="profile picture" />
                         </li>
                         <li>
-                            <img src="nav/drop.png" alt="dropdown icon" />
+                            <img className='logout' src="nav/drop.png" alt="logout icon" onClick={() => setIsAuthed({authed: false, user: {}})}/>
                         </li>
                     </ul>
                   </nav>

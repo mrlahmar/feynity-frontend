@@ -2,6 +2,10 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import Input from '../components/Input'
 import Button from '../components/Button'
+import Warning from '../components/Warning'
+import { AuthContext } from '../context/AuthContext'
+import { useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 
 const Main = styled.main`
     margin: 82px auto 0;
@@ -17,7 +21,12 @@ const Main = styled.main`
 `
 
 function signup() {
+    const [wentWrong, setWentWrong] = useState(false)
+    const [isAuthed, setIsAuthed] = useContext(AuthContext)
+    const router = useRouter()
+
     const registerUser = async event => {
+        setWentWrong(false)
         event.preventDefault()
 
         const res = await fetch(
@@ -36,8 +45,20 @@ function signup() {
             }
         )
     
-        const result = await res.json()
-        console.log(result);
+        const user = await res.json()
+
+        // User is authenticated
+        if(user.hasOwnProperty('accessToken')) {
+            setIsAuthed({
+                authed: true,
+                user
+            })
+            router.push('/profile')
+            return;
+        }
+        
+        // User is not authenticated
+        setWentWrong(true)
     }
 
     return (
@@ -48,13 +69,14 @@ function signup() {
             <Main>
                 <div className="container">
                     <h1>Sign Up</h1>
+                    {wentWrong ? <Warning /> : <></>}
                     <form onSubmit={registerUser}>
                         <Input name="email" type="email" label="Email *" placeholder="e.g name@example.com"/>
                         <Input name="name" type="text" label="Full Name *" placeholder="e.g John Doe"/>
                         <Input name="password" type="password" label="Password *" placeholder="e.g ***********"/>
                         <Input name="repeatpassword" type="password" label="Repeat Password *" placeholder="e.g ***********"/>
                         <Button text="Sign Up"/>
-                    </form>
+                    </form> 
                 </div>
             </Main>
         </>
