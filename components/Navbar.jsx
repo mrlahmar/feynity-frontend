@@ -29,7 +29,7 @@ const Navbar = () => {
                             My Activity
                         </li>
                         <li>
-                            <img src="nav/my-activity-nav.png" alt="My Activity Icon" />
+                            <img src="nav/search.png" alt="My Activity Icon" />
                             Search
                         </li>
                     </ul>
@@ -41,8 +41,9 @@ const Navbar = () => {
                         <li>
                             <img src="nav/profile-pic.png" alt="profile picture" />
                         </li>
-                        <li>
-                            <img className='logout' src="nav/drop.png" alt="logout icon" onClick={() => setIsAuthed({authed: false, user: {}})}/>
+                        <li className='logout' onClick={() => {setIsAuthed({authed: false, user: {}}); localStorage.removeItem('accessToken')}}>
+                            <img src="nav/logout.png" alt="logout icon"/>
+                            <span>Log out</span>
                         </li>
                     </ul>
                   </nav>

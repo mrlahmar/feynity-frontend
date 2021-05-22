@@ -179,8 +179,20 @@ const Header = styled.header`
             margin-right: 15px;
         }
 
+        .logout {
+            display: flex;
+            align-items: center;
+            padding-bottom: 5px;
+        }
+
         .logout:hover {
             cursor: pointer;
+        }
+
+        .logout span {
+            color: #A2A2A2;
+            font-weight: normal;
+            margin-left: 8px;
         }
 
         span {

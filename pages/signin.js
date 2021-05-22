@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import {useRouter} from 'next/router'
 import { AuthContext } from '../context/AuthContext'
 import { useContext, useState } from 'react'
-import withAuthForm from '../auth/withAuthForm'
+import Warning from '../components/Warning'
+import withAuth from '../auth/withAuthForm'
 
 const Main = styled.main`
     margin: 82px auto 0;
@@ -50,7 +51,7 @@ function signin() {
                 authed: true,
                 user
             })
-            router.replace('/profile')
+            localStorage.setItem('accessToken', user.accessToken)
             return;
         }
         
@@ -78,4 +79,4 @@ function signin() {
     )
 }
 
-export default withAuthForm(signin)
+export default withAuth(signin)

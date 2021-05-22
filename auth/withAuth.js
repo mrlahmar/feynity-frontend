@@ -8,11 +8,10 @@ const withAuth = (WrappedComponent) => {
     if (typeof window !== "undefined") {
       const router = useRouter();
 
-      //const accessToken = localStorage.getItem("accessToken");
       const [isAuthed, setIsAuthed] = useContext(AuthContext)
       
       // If there is no access token we redirect to "/" page.
-      if (isAuthed.authed) {
+      if (!isAuthed.authed) {
         router.replace("/");
         return null;
       }

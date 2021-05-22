@@ -6,6 +6,7 @@ import Warning from '../components/Warning'
 import { AuthContext } from '../context/AuthContext'
 import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import withAuth from '../auth/withAuthForm'
 
 const Main = styled.main`
     margin: 82px auto 0;
@@ -53,7 +54,7 @@ function signup() {
                 authed: true,
                 user
             })
-            router.push('/profile')
+            localStorage.setItem('accessToken', user.accessToken)
             return;
         }
         
@@ -83,4 +84,4 @@ function signup() {
     )
 }
 
-export default signup
+export default withAuth(signup)
