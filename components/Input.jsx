@@ -11,7 +11,8 @@ const Label = styled.label`
     }
 
     input {
-        width: 270px;
+        width: 100%;
+        max-width: 350px;
         height: 45px;
         border: 2px solid #6573FF;
         border-radius: 10px;
@@ -46,7 +47,7 @@ const Label = styled.label`
         }
 
         input {
-            width: 350px;
+            max-width: 350px;
         }
     }
 

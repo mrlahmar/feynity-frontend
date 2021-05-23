@@ -5,7 +5,6 @@ import Button from '../components/Button'
 import Warning from '../components/Warning'
 import { AuthContext } from '../context/AuthContext'
 import { useContext, useState } from 'react'
-import { useRouter } from 'next/router'
 import withAuth from '../auth/withAuthForm'
 
 const Main = styled.main`
@@ -24,7 +23,6 @@ const Main = styled.main`
 function signup() {
     const [wentWrong, setWentWrong] = useState(false)
     const [isAuthed, setIsAuthed] = useContext(AuthContext)
-    const router = useRouter()
 
     const registerUser = async event => {
         setWentWrong(false)

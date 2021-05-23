@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import styled from 'styled-components'
-import {useRouter} from 'next/router'
 import { AuthContext } from '../context/AuthContext'
 import { useContext, useState } from 'react'
 import Warning from '../components/Warning'
@@ -22,7 +21,6 @@ const Main = styled.main`
 `
 function signin() {
     const [wentWrong, setWentWrong] = useState(false)
-    const router = useRouter()
     const [isAuthed, setIsAuthed] = useContext(AuthContext)
 
     const signinUser = async event => {
