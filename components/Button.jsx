@@ -12,7 +12,7 @@ const Btn = styled.button`
     color: ${props => props.color};
     font-weight: bold;
     letter-spacing: 1px;
-    margin-bottom: 20px;
+    margin-bottom: ${props => props.marginbottom};
 
     &:hover {
         cursor: pointer;
@@ -23,9 +23,9 @@ const Btn = styled.button`
     }
 `
 
-function Button({text,color,bgColor,borderColor,onClick}) {
+function Button({text,color,bgColor,borderColor,marginbottom,onClick}) {
     return (
-        <Btn type="submit" color={color} bgColor={bgColor} borderColor={borderColor}>
+        <Btn type="submit" color={color} bgColor={bgColor} borderColor={borderColor} marginbottom={marginbottom}>
             {text}
         </Btn>
     )
@@ -34,7 +34,8 @@ function Button({text,color,bgColor,borderColor,onClick}) {
 Button.defaultProps = {
     color: "#fff",
     bgColor: "#6573FF",
-    borderColor: "#6573FF"
+    borderColor: "#6573FF",
+    marginbottom: '20px'
 };
 
 export default Button

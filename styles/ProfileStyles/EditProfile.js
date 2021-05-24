@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 const ProfileStyle = styled.div`
-    //display: flex;
+    margin-top: 100px;
+
     main {
         width: 100%;
         max-width: 350px;
@@ -30,10 +31,10 @@ const ProfileStyle = styled.div`
         display: flex;
         justify-content: space-between;
         overflow-x: hidden;
+        margin-top: 100px;
 
         main {
             margin: unset;
-            margin-top: 100px;
             margin-left: 400px;
             max-width: calc(100% - 400px);
 
@@ -47,6 +48,7 @@ const ProfileStyle = styled.div`
 
     @media (min-width: 1440px) {
         margin: 0 auto;
+        margin-top: 100px;
         width: 1440px;
     } 
 `

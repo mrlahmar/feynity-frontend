@@ -69,7 +69,6 @@ const SideStyle = styled.aside`
 
     @media (min-width: 1080px) {
         margin: unset;
-        margin-top: 100px;
         position: fixed;
 
         .show-menu {
