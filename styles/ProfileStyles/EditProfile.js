@@ -40,7 +40,7 @@ const ProfileStyle = styled.div`
 
             .inner {
                 display: grid;
-                grid-template-columns: 350px auto;
+                grid-template-columns: repeat(auto-fill, 350px);
                 grid-column-gap: 25px;
             }
         }

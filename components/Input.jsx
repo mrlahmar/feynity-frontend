@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Label = styled.label`
@@ -12,9 +13,9 @@ const Label = styled.label`
 
     input {
         width: 100%;
-        max-width: 350px;
-        height: 45px;
-        border: 2px solid #6573FF;
+        max-width: ${props => props.maxwidth};
+        height: ${props => props.height};
+        border: 2px solid ${props => props.borderColor};
         border-radius: 10px;
         margin-bottom: 20px;
         text-indent: 15px;
@@ -47,19 +48,30 @@ const Label = styled.label`
         }
 
         input {
-            max-width: 350px;
+            max-width: ${props => props.maxwidth};
         }
     }
 
 `
 
-function Input({name, type, label, placeholder}) {
+function Input({name, type, label, placeholder, borderColor, height, labelCheck, maxwidth}) {
     return (
-        <Label htmlFor={name}>
-            <span>{label}</span>
+        <Label htmlFor={name} borderColor={borderColor} height={height} maxwidth={maxwidth}>
+            {labelCheck ? <span>{label}</span> : <></>}
             <input type={type} id={name} name={name} placeholder={placeholder} required/>
         </Label>
     )
+}
+
+Input.propTypes = {
+    labelCheck: PropTypes.bool
+}
+
+Input.defaultProps = {
+    borderColor: "#6573FF",
+    height: "45px",
+    labelCheck: true,
+    maxwidth: "350px"
 }
 
 export default Input

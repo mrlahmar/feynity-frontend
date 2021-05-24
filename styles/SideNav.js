@@ -32,7 +32,6 @@ const SideStyle = styled.aside`
         padding: 13px 130px 13px 15px;
         margin-bottom: 35px;
         margin-top: 10px;
-        //margin-top: 100px;
 
         img {
             border-radius: 50%;

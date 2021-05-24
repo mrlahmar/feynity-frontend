@@ -4,7 +4,7 @@ const CourseStyle = styled.div`
     padding: 0 15px 0;
 
     main {
-        margin: 50px auto 0px;
+        margin: 100px auto 0px;
         .tag {
             margin-bottom: 15px;
         }
