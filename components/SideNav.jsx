@@ -5,15 +5,17 @@ import SideStyle from '../styles/SideNav'
 const SideNav = () => {
     return (
         <SideStyle className="primary-side">
-            <div className="profile-box">
-                <img src="side-nav/profile-side.png" alt="Profile pic"/>
-                <Link href="/profile">
-                    <a>
-                        <p>John Doe</p>
-                        <p>Edit profile</p>
-                    </a>
-                </Link>
-            </div>
+            <Link href="/profile">
+                <a>
+                    <div className="profile-box">
+                        <img src="side-nav/profile-side.png" alt="Profile pic"/>
+                            <a>
+                                <p>John Doe</p>
+                                <p>Edit profile</p>
+                            </a>
+                    </div>
+                </a>
+            </Link>
             <ul>
                 <li>
                     <Link href="/">
