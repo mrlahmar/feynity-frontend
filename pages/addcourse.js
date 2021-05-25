@@ -45,4 +45,4 @@ function addcourse() {
     )
 }
 
-export default addcourse
+export default withAuth(addcourse)

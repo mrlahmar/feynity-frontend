@@ -28,15 +28,13 @@ const ProfileStyle = styled.div`
     @media (min-width: 1080px) {
         margin: 0 10px;
         width: 100%;
-        display: flex;
-        justify-content: space-between;
         overflow-x: hidden;
         margin-top: 100px;
 
         main {
             margin: unset;
             margin-left: 400px;
-            max-width: calc(100% - 400px);
+            max-width: calc(100% - 450px);
 
             .inner {
                 display: grid;
