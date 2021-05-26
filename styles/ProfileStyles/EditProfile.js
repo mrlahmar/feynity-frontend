@@ -49,6 +49,11 @@ const ProfileStyle = styled.div`
         margin-top: 100px;
         width: 1440px;
     } 
+
+
+    .profilepic {
+        border-radius: 50%;
+    }
 `
 
 export default ProfileStyle

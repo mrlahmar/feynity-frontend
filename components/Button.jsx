@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const Btn = styled.button`
     width: 100%;
-    max-width: 350px;
+    max-width: ${props => props.maxwidth};
     height: 45px;
     background-color: ${props => props.bgColor};
     border: 2px solid ${props => props.borderColor};
@@ -19,13 +19,13 @@ const Btn = styled.button`
     }
 
     @media (min-width: 768px) {
-        max-width: 350px;
+        max-width: ${props => props.maxwidth};
     }
 `
 
-function Button({text,color,bgColor,borderColor,marginbottom,onClick}) {
+function Button({text,color,bgColor,borderColor,marginbottom,maxwidth,onClick}) {
     return (
-        <Btn type="submit" color={color} bgColor={bgColor} borderColor={borderColor} marginbottom={marginbottom}>
+        <Btn type="submit" color={color} bgColor={bgColor} borderColor={borderColor} marginbottom={marginbottom} maxwidth={maxwidth}>
             {text}
         </Btn>
     )
@@ -35,7 +35,8 @@ Button.defaultProps = {
     color: "#fff",
     bgColor: "#6573FF",
     borderColor: "#6573FF",
-    marginbottom: '20px'
+    marginbottom: '20px',
+    maxwidth: "350px"
 };
 
 export default Button

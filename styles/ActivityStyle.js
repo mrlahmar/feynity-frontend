@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const HomeStyle = styled.div`
+const ActivityStyle = styled.div`
     main h1 {
         font-size: 1.3em;
         margin-bottom: 20px;
@@ -47,4 +47,4 @@ const HomeStyle = styled.div`
     }
 `
 
-export default HomeStyle
+export default ActivityStyle

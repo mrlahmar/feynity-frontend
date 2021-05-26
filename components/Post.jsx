@@ -30,7 +30,7 @@ const Post = () => {
             </div>
 
             <div className="buttons">
-                <PostButton src="post/heart-btn.png" alt="like btn" text="Like"/>
+                <PostButton src="post/heart-btn.png" alt="like btn" text="Like" marginright="20px"/>
                 <PostButton src="post/comment-btn.png" alt="comment btn" text="Comment"/>
             </div>
 
@@ -39,11 +39,10 @@ const Post = () => {
                 <div className="comments">
                     <Comment writer="Mary C." src="post/comment-profile.png" text="Lorem ipsum dolor sit amet consectetur adipisicing." time="2 min ago"/>
                 </div>
-                {/* <span classNamem="sac">See all comments</span> */}
             </div>
 
             <div className="comment-form">
-                <CommentForm />
+                <CommentForm src="post/comment-form-profile.png"/>
             </div>
         </PostContainer>
     )

@@ -20,7 +20,7 @@ function profile() {
                     <div className="container">
                         <h1>Edit Profile</h1>
                         <form className='form' action="">
-                            <img src="profile/editprofile-pic.png" alt="Profile pic" />
+                            <img className='profilepic' src="profile/editprofile-pic.png" alt="Profile pic" />
                             <div className="inner">
                                 <Input name="email" type="email" label="Edit Email *" placeholder="e.g name@example.com"/>
                                 <Input name="fullname" type="text" label="Edit Full Name *" placeholder="e.g John Doe"/>

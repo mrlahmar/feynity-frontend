@@ -280,6 +280,10 @@ const Header = styled.header`
             }
         }
     }
+
+    .profilepic {
+        border-radius: 50%;
+    }
 `
 
 export default Header

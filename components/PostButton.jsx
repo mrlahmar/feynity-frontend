@@ -6,18 +6,14 @@ const Btn = styled.button`
     align-items: center;
     justify-content: center;
     background-color: #E7E7FC;
-    width: 100%;
-    max-width: 150px;
+    width: calc((100% - 20px) / 2);
     height: 35px;
     border: none;
     border-radius: 10px;
+    margin-right: ${props => props.marginright};
 
     &:hover {
         cursor: pointer;
-    }
-
-    @media (min-width: 768px) {
-        max-width: 350px;
     }
 
     img {
@@ -25,13 +21,17 @@ const Btn = styled.button`
     }
 `
 
-const PostButton = ({src, alt, text}) => {
+const PostButton = ({src, alt, text, marginright}) => {
     return (
-        <Btn>
+        <Btn marginright={marginright}>
             <img src={src} alt={alt} />
             {text}
         </Btn>
     )
+}
+
+PostButton.defaultProps = {
+    marginright: '0px'
 }
 
 export default PostButton

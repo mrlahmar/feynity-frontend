@@ -9,6 +9,7 @@ const GroupCardStyle = styled.div`
     max-width: 330px;
     border-radius: 10px;
     box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+    margin-bottom: ${props => props.marginbottom};
 
     p.tag {
         margin-bottom: 10px;
@@ -45,9 +46,9 @@ const GroupCardStyle = styled.div`
     }
 `
 
-const GroupCard = () => {
+const GroupCard = ({marginbottom}) => {
     return (
-        <GroupCardStyle>
+        <GroupCardStyle marginbottom={marginbottom}>
             <p className='tag'><span className='label'>Group</span></p>
             <Link href="/"><a><h3>Tunisian Python Community</h3></a></Link>
             <p className='basedon'>Based On <Link href="/"><a><span>Python for Everyone</span></a></Link></p>
@@ -55,6 +56,10 @@ const GroupCard = () => {
             <Link href="/"><a><Button text='Visit Group' marginbottom='0'/></a></Link>
         </GroupCardStyle>
     )
+}
+
+GroupCard.defaultProps = {
+    marginbottom: "0px"
 }
 
 export default GroupCard

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const PostContainer = styled.div`
-    //width: 881px;
+    max-width: 690px;
     height: auto;
     background-color: white;
     border-radius: 10px;
@@ -45,7 +45,9 @@ const PostContainer = styled.div`
 
     .buttons {
         display: flex;
+        justify-content: space-between;
         margin-bottom: 10px;
+        width: 100%;
     }
 
     .all-comments {
@@ -56,7 +58,6 @@ const PostContainer = styled.div`
         .cmnts {
             margin-bottom: 20px;
         }
-
     }
 `
 
