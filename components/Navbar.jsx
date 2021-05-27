@@ -17,24 +17,40 @@ const Navbar = () => {
                     <img src="nav/close-nav.svg" className="mobile-menu-exit" alt="Close Navigation" onClick={() => {setOpen(!open)}}/>
                     <ul className="primary-nav">
                         <li>
-                            <img src="nav/home-nav-mobile.png" alt="Home Icon" />
-                            Home
+                            <Link href="/">
+                                <a>
+                                    <img src="nav/home-nav-mobile.png" alt="Home Icon" />
+                                    Home
+                                </a>
+                            </Link>
                         </li>
                         <li>
-                            <img src="nav/progress-nav.png" alt="Progress Icon" />
-                            Progress
+                            <Link href="/progress">
+                                <a>
+                                    <img src="nav/progress-nav.png" alt="Progress Icon" />
+                                    Progress
+                                </a>
+                            </Link>
                         </li>
                         <li>
-                            <img src="nav/my-activity-nav.png" alt="My Activity Icon" />
-                            My Activity
+                            <Link href="/myactivity">
+                                <a>
+                                    <img src="nav/my-activity-nav.png" alt="My Activity Icon" />
+                                    My Activity
+                                </a>
+                            </Link>   
                         </li>
                         <li>
-                            <img src="nav/search.png" alt="My Activity Icon" />
-                            Search
+                            <Link href="/search">
+                                <a>
+                                    <img src="nav/search.png" alt="My Activity Icon" />
+                                    Search
+                                </a>
+                            </Link>
                         </li>
                     </ul>
                     <ul className="secondary-nav">
-                        <li><span>1250 points</span></li>
+                        <li><span>{isAuthed.user.learner.points} points</span></li>
                         <li>
                             <img src="nav/bell.png" alt="bell icon" />
                         </li>

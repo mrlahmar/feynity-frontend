@@ -13,6 +13,7 @@ const Label = styled.label`
 
     input {
         width: 100%;
+        min-width: 250px;
         max-width: ${props => props.maxwidth};
         height: ${props => props.height};
         border: 2px solid ${props => props.borderColor};

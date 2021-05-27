@@ -21,7 +21,7 @@ const GroupsStyle = styled.div`
     }
 
     @media (min-width: 1080px) {
-        margin-top: 100px;
+        margin-top: 120px;
         main {
             margin-left: 400px;
         }
@@ -29,7 +29,7 @@ const GroupsStyle = styled.div`
 
     @media (min-width: 1440px) {
         main {
-            margin: 100px auto 0 400px;
+            margin: 120px auto 0 400px;
         }
         
         margin: 0 auto;

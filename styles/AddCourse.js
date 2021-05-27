@@ -18,14 +18,14 @@ const AddCourse = styled.div`
     }
 
     @media (min-width: 768px) {
-        margin-top: 100px;
+        margin-top: 120px;
     }
 
     @media (min-width: 1080px) {
         margin: 0 10px;
         width: 100%;
         overflow-x: hidden;
-        margin-top: 100px;
+        margin-top: 120px;
 
         main {
             margin: unset;
@@ -42,7 +42,7 @@ const AddCourse = styled.div`
 
     @media (min-width: 1440px) {
         margin: 0 auto;
-        margin-top: 100px;
+        margin-top: 120px;
         width: 1440px;
     } 
 `

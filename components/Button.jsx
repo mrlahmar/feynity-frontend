@@ -23,9 +23,9 @@ const Btn = styled.button`
     }
 `
 
-function Button({text,color,bgColor,borderColor,marginbottom,maxwidth,onClick}) {
+function Button({type,text,color,bgColor,borderColor,marginbottom,maxwidth,onClick}) {
     return (
-        <Btn type="submit" color={color} bgColor={bgColor} borderColor={borderColor} marginbottom={marginbottom} maxwidth={maxwidth}>
+        <Btn type={type} color={color} bgColor={bgColor} borderColor={borderColor} marginbottom={marginbottom} maxwidth={maxwidth} onClick={onClick}>
             {text}
         </Btn>
     )
@@ -36,7 +36,8 @@ Button.defaultProps = {
     bgColor: "#6573FF",
     borderColor: "#6573FF",
     marginbottom: '20px',
-    maxwidth: "350px"
+    maxwidth: "350px",
+    type: "submit"
 };
 
 export default Button

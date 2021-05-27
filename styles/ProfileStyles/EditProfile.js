@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const ProfileStyle = styled.div`
-    margin-top: 100px;
+    margin-top: 120px;
 
     main {
         width: 100%;
@@ -9,6 +9,8 @@ const ProfileStyle = styled.div`
         margin: 0px auto 0px;
         padding-right: 15px;
         padding-left: 15px;
+        display: grid;
+        justify-content: center;
 
         h1 {
             margin-bottom: 15px;
@@ -29,9 +31,10 @@ const ProfileStyle = styled.div`
         margin: 0 10px;
         width: 100%;
         overflow-x: hidden;
-        margin-top: 100px;
+        margin-top: 120px;
 
         main {
+            display: block;
             margin: unset;
             margin-left: 400px;
             max-width: calc(100% - 450px);
@@ -46,7 +49,7 @@ const ProfileStyle = styled.div`
 
     @media (min-width: 1440px) {
         margin: 0 auto;
-        margin-top: 100px;
+        margin-top: 120px;
         width: 1440px;
     } 
 

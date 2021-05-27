@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import SideStyle from '../styles/SideNav'
+import { AuthContext } from '../context/AuthContext'
 
 const SideNav = () => {
+    const [isAuthed, setIsAuthed] = useContext(AuthContext)
     return (
         <SideStyle className="primary-side">
             <Link href="/profile">
@@ -10,7 +12,7 @@ const SideNav = () => {
                     <div className="profile-box">
                         <img src="side-nav/profile-side.png" alt="Profile pic"/>
                             <a>
-                                <p>John Doe</p>
+                                <p>{isAuthed.user.learner.name}</p>
                                 <p>Edit profile</p>
                             </a>
                     </div>
@@ -18,7 +20,15 @@ const SideNav = () => {
             </Link>
             <ul>
                 <li>
-                    <Link href="/">
+                    <Link href="/addcourse">
+                        <a>
+                            <img src="side-nav/create-group.svg" alt="Add a course"/>
+                            <span>Add a course</span>
+                        </a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/addgroup">
                         <a>
                             <img src="side-nav/create-group.svg" alt="Create a group"/>
                             <span>Create a group</span>
@@ -26,7 +36,7 @@ const SideNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/">
+                    <Link href="/mygroups">
                         <a>
                             <img src="side-nav/my-groups.svg" alt="My Groups"/>
                             <span>My Groups</span>
@@ -34,7 +44,7 @@ const SideNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/">
+                    <Link href="/mycourses">
                         <a>
                             <img src="side-nav/my-courses.svg" alt="My Courses"/>
                             <span>My Courses</span>
@@ -42,7 +52,7 @@ const SideNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/">
+                    <Link href="/mychallenges">
                         <a>
                             <img src="side-nav/my-challenges.svg" alt="My Challenges"/>
                             <span>My Challenges</span>

@@ -281,6 +281,18 @@ const Header = styled.header`
         }
     }
 
+    @media (min-width: 1080px) {
+        .logged .primary-nav {
+            margin-right: 150px;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .logged .primary-nav {
+            margin-right: 250px;
+        }
+    }
+
     .profilepic {
         border-radius: 50%;
     }
