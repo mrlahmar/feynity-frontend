@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="65" height="56" viewBox="0 0 65 56">
+  <g id="new-challenge" transform="translate(-100 -370)">
+    <rect id="Rectangle_57" data-name="Rectangle 57" width="65" height="56" rx="20" transform="translate(100 370)" fill="#e6e9ee"/>
+    <g id="_003-plus" data-name="003-plus" transform="translate(114.592 379.851)">
+      <path id="Path_46" data-name="Path 46" d="M17.908,35.817A17.908,17.908,0,1,1,35.817,17.908,17.928,17.928,0,0,1,17.908,35.817Zm0-33.578a15.67,15.67,0,1,0,15.67,15.67A15.687,15.687,0,0,0,17.908,2.239Zm0,0" fill="#8c95a4"/>
+      <path id="Path_47" data-name="Path 47" d="M144.789,242.239h-15.67a1.119,1.119,0,1,1,0-2.239h15.67a1.119,1.119,0,1,1,0,2.239Zm0,0" transform="translate(-119.046 -223.211)" fill="#8c95a4"/>
+      <path id="Path_48" data-name="Path 48" d="M241.119,145.908A1.12,1.12,0,0,1,240,144.789v-15.67a1.119,1.119,0,1,1,2.239,0v15.67A1.12,1.12,0,0,1,241.119,145.908Zm0,0" transform="translate(-223.211 -119.046)" fill="#8c95a4"/>
+    </g>
+  </g>
+</svg>

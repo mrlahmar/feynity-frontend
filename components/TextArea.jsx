@@ -25,15 +25,16 @@ const Label = styled.label`
 
     @media (min-width: 1154px) {
         textarea {
-            width: 725px;
-            height: 200px;
+            width: ${props => props.width};
+            height: ${props => props.height};
+            max-width: 100%;
         }
     }
 `
 
-const TextArea = ({label, name, placeholder, borderColor}) => {
+const TextArea = ({label, name, placeholder, borderColor, width, height}) => {
     return (
-        <Label htmlFor={name} borderColor={borderColor}>
+        <Label htmlFor={name} borderColor={borderColor} width={width} height={height}>
             <span>{label}</span>
             <textarea name={name} id={name} placeholder={placeholder}></textarea>
         </Label>
@@ -41,7 +42,9 @@ const TextArea = ({label, name, placeholder, borderColor}) => {
 }
 
 TextArea.defaultProps = {
-    borderColor: "#6573FF"
+    borderColor: "#6573FF",
+    width: "725px",
+    height: "200px"
 }
 
 export default TextArea
