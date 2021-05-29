@@ -12,7 +12,7 @@ const SideNav = () => {
                     <div className="profile-box">
                         <img src="side-nav/profile-side.png" alt="Profile pic"/>
                             <a>
-                                <p>{isAuthed.user.learner.name}</p>
+                                <p>{/*isAuthed.user.learner.name*/}Name</p>
                                 <p>Edit profile</p>
                             </a>
                     </div>

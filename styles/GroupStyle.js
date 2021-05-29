@@ -12,6 +12,12 @@ const GroupStyle = styled.div`
         display: none;
     }
 
+    .invite {
+        h3 {
+            margin-bottom: 20px;
+        }
+    }
+
     main {
         display: grid;
         justify-content: center;
@@ -23,6 +29,14 @@ const GroupStyle = styled.div`
         main {
             margin-left: 400px;
             display: block;
+        }
+        
+        .cg-inner {
+            width: 690px;
+        }
+
+        .invite {
+            margin-left: 400px;
         }
     }
 
@@ -43,7 +57,12 @@ const GroupStyle = styled.div`
             display: unset;
             position: fixed;
             right: calc((100% - 1440px) / 2);
-        } 
+        }
+        
+        .invite {
+            position: fixed;
+            right: calc((100% - 1440px) / 2);
+        }
     }
 `
 
