@@ -28,7 +28,7 @@ const search = () => {
                                 type="text" 
                                 label="" 
                                 placeholder="Search for courses and groups" 
-                                labelCheck="false" 
+                                labelCheck={false} 
                                 height="55px" 
                                 borderColor="#A2A2A2"
                                 maxwidth="1020px"
