@@ -54,7 +54,7 @@ const Load = styled.div`
 const Loading = () => {
     return (
         <Load>
-            <div class="dot-typing"></div>
+            <div className="dot-typing"></div>
             <p>Loading</p>
         </Load>
     )

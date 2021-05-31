@@ -8,9 +8,9 @@ export const AuthProvider = ({children}) => {
         authed: false,
         user: {
             learner: {
-                name: "",
-                email: "",
-                points: 0
+                name: null,
+                email: null,
+                points: null
             }
         }
     });
@@ -29,9 +29,19 @@ export const AuthProvider = ({children}) => {
 
             const user = await result.json()
             
-            if (user.hasOwnProperty('learner')) {
+            if (result.status === 200 && user.hasOwnProperty('learner')) {
                 user.accessToken = token
                 setIsAuthed({authed: true, user: user})
+                setLoading(false)
+            } else {
+                localStorage.removeItem('accessToken')
+                setIsAuthed({isAuthed: false, user: {
+                    learner: {
+                        name: null,
+                        email: null,
+                        points: null
+                    }
+                }})
                 setLoading(false)
             }
         }
@@ -40,9 +50,10 @@ export const AuthProvider = ({children}) => {
     }, [])
 
     return (
-        loading ? <Loading />
-        : <AuthContext.Provider value={[isAuthed, setIsAuthed]}>
-            {children}
-        </AuthContext.Provider>
+        loading 
+        ?   <Loading />
+        :   <AuthContext.Provider value={[isAuthed, setIsAuthed]}>
+                {children}
+            </AuthContext.Provider>
     );
 }

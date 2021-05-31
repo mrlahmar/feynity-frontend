@@ -55,24 +55,26 @@ const Label = styled.label`
 
 `
 
-function Input({name, type, label, placeholder, borderColor, height, labelCheck, maxwidth}) {
+function Input({name, type, label, placeholder, borderColor, height, labelCheck, maxwidth, req}) {
     return (
         <Label htmlFor={name} borderColor={borderColor} height={height} maxwidth={maxwidth}>
             {labelCheck ? <span>{label}</span> : <></>}
-            <input type={type} id={name} name={name} placeholder={placeholder} required/>
+            <input type={type} id={name} name={name} placeholder={placeholder} required={req}/>
         </Label>
     )
 }
 
 Input.propTypes = {
-    labelCheck: PropTypes.bool
+    labelCheck: PropTypes.bool,
+    req: PropTypes.bool
 }
 
 Input.defaultProps = {
     borderColor: "#6573FF",
     height: "45px",
     labelCheck: true,
-    maxwidth: "350px"
+    maxwidth: "350px",
+    req: true
 }
 
 export default Input

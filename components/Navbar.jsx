@@ -59,7 +59,7 @@ const Navbar = () => {
                         <li>
                             <img className='profilepic' src="nav/profile-pic.png" alt="profile picture" />
                         </li>
-                        <li className='logout' onClick={() => {setIsAuthed({authed: false, user: {}}); localStorage.removeItem('accessToken'); router.push("/signin") }}>
+                        <li className='logout' onClick={() => {setIsAuthed({authed: false, user: {}}); localStorage.removeItem('accessToken'); router.replace("/signin") }}>
                             <img src="nav/logout.png" alt="logout icon"/>
                             <span>Log out</span>
                         </li>

@@ -29,9 +29,55 @@ function profile() {
 
         if (res.status === 200) {
             localStorage.removeItem('accessToken')
-            setIsAuthed({isAuthed: false, user: {}})
-            router.replace('/')
+            setIsAuthed({isAuthed: false, user: {
+                learner: {
+                    name: null,
+                    email: null,
+                    points: null
+                }
+            }})
+            router.replace('/signin')
         } else {
+            setWentWrong(true)
+        }
+    }
+
+    const updateAccount = async event => {
+        setWentWrong(false)
+        event.preventDefault()
+
+        try {
+            const res = await fetch(
+                'http://localhost:5000/api/v1/learners/update',
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': isAuthed.user.accessToken
+                    }, 
+                    body: JSON.stringify({
+                        email: event.target.email.value,
+                        name: event.target.name.value,
+                        password: event.target.password.value,
+                        rpassword: event.target.repeatpassword.value
+                    })
+                }
+            )
+    
+            if (res.status === 200) {
+                localStorage.removeItem('accessToken')
+                setIsAuthed({isAuthed: false, user: {
+                    learner: {
+                        name: null,
+                        email: null,
+                        points: null
+                    }
+                }})
+                router.replace('/signin')
+            } else {
+                setWentWrong(true)
+            }
+        } catch (error) {
             setWentWrong(true)
         }
     }
@@ -47,14 +93,14 @@ function profile() {
                     <div className="container">
                         <h1>Edit Profile</h1>
                         {wentWrong ? <Warning /> : <></>}
-                        <form className='form' action="">
+                        <form className='form' onSubmit={updateAccount}>
                             <img className='profilepic' src="profile/editprofile-pic.png" alt="Profile pic" />
                             <div className="inner">
-                                <Input name="email" type="email" label="Edit Email *" placeholder="e.g name@example.com"/>
-                                <Input name="fullname" type="text" label="Edit Full Name *" placeholder="e.g John Doe"/>
-                                <Input name="password" type="password" label="Edit Password *" placeholder="e.g ***********"/>
-                                <Input name="repeatpassword" type="password" label="Repeat Password *" placeholder="e.g ***********"/>
-                                <Button type="button" text="Delete My Account" color="#ED694A" bgColor="#fff" borderColor="#ED694A" onClick={() => deleteAccount()}/>
+                                <Input req={false} name="email" type="email" label="Edit Email *" placeholder="e.g name@example.com"/>
+                                <Input req={false} name="name" type="text" label="Edit Full Name *" placeholder="e.g John Doe"/>
+                                <Input req={false} name="password" type="password" label="Edit Password *" placeholder="e.g ***********"/>
+                                <Input req={false} name="repeatpassword" type="password" label="Repeat Password *" placeholder="e.g ***********"/>
+                                <Button type="button" text="Delete My Account" color="#ED694A" bgColor="#fff" borderColor="#ED694A" onClick={deleteAccount}/>
                                 <Button text="Update My Profile"/>
                             </div>
                         </form>
