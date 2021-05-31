@@ -7,12 +7,12 @@ const withAuth = (WrappedComponent) => {
     // checks whether we are on client / browser or server.
     if (typeof window !== "undefined") {
       const router = useRouter();
+      //const [isAuthed, setIsAuthed] = useContext(AuthContext)
 
-      const [isAuthed, setIsAuthed] = useContext(AuthContext)
-      
+      const token = localStorage.getItem("accessToken")
       // If there is no access token we redirect to "/" page.
-      if (!isAuthed.authed) {
-        router.replace("/");
+      if (!token) {
+        router.replace("/signin");
         return null;
       }
 

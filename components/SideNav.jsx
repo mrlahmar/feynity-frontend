@@ -10,9 +10,9 @@ const SideNav = () => {
             <Link href="/profile">
                 <a>
                     <div className="profile-box">
-                        <img src="side-nav/profile-side.png" alt="Profile pic"/>
+                        <img src="/side-nav/profile-side.png" alt="Profile pic"/>
                             <a>
-                                <p>{/*isAuthed.user.learner.name*/}Name</p>
+                                <p>{isAuthed.user.learner.name}</p>
                                 <p>Edit profile</p>
                             </a>
                     </div>

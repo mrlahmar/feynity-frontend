@@ -2,10 +2,12 @@ import Header from '../styles/Navbar'
 import Link from 'next/link'
 import {useContext, useState} from 'react'
 import {AuthContext} from '../context/AuthContext'
+import { useRouter } from 'next/router'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
     const [isAuthed, setIsAuthed] = useContext(AuthContext);
+    const router = useRouter()
 
     return (
         <Header>
@@ -57,7 +59,7 @@ const Navbar = () => {
                         <li>
                             <img className='profilepic' src="nav/profile-pic.png" alt="profile picture" />
                         </li>
-                        <li className='logout' onClick={() => {setIsAuthed({authed: false, user: {}}); localStorage.removeItem('accessToken')}}>
+                        <li className='logout' onClick={() => {setIsAuthed({authed: false, user: {}}); localStorage.removeItem('accessToken'); router.push("/signin") }}>
                             <img src="nav/logout.png" alt="logout icon"/>
                             <span>Log out</span>
                         </li>

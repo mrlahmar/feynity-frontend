@@ -40,4 +40,4 @@ function settings() {
     )
 }
 
-export default settings
+export default withAuth(settings)
