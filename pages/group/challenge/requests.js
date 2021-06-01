@@ -12,7 +12,6 @@ import GroupStyle from '../../../styles/GroupStyle'
 import Req from '../../../styles/Req'
 
 function requests() {
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
     return (
         <>
             <Head>

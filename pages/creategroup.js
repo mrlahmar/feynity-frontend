@@ -10,7 +10,6 @@ import GroupCard from '../components/GroupCard'
 import GroupStyle from '../styles/GroupStyle'
 
 function creategroup() {
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
     return (
         <>
             <Head>

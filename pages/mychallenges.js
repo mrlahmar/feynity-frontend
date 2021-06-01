@@ -9,7 +9,6 @@ import GroupStyle from '../styles/GroupStyle'
 import withAuth from '../auth/withAuth'
 
 const mychallenges = () => {
-  const [isAuthed, setIsAuthed] = useContext(AuthContext)
   return (
     <>
         <Head>

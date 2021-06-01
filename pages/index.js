@@ -8,14 +8,14 @@ import { AuthContext } from '../context/AuthContext'
 import HomeStyle from '../styles/IndexStyles/HomeStyle'
 
 export default function Home() {
-  const [isAuthed, setIsAuthed] = useContext(AuthContext)
+  const {isAuthenticated, user} = useContext(AuthContext)
   return (
     <>
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {isAuthed.authed
+      {isAuthenticated
       ? <HomeStyle>
           <SideNav />
           <div className="container">

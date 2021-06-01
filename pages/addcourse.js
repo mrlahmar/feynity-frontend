@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import withAuth from '../auth/withAuth'
 import Head from 'next/head'
@@ -7,47 +7,21 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 import AddCourse from '../styles/AddCourse'
 import TextArea from '../components/TextArea'
+import Warning from '../components/Warning'
 import { useRouter } from 'next/router'
+import add_course from '../utils/Course'
+import Loading from '../components/Loading'
 
 function addcourse() {
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
+    const {user} = useContext(AuthContext)
+    const [wentWrong, setWentWrong] = useState(false)
+    const [loading, setLoading] = useState(false)
     const router = useRouter()
 
     const addAcourse = async event => {
         event.preventDefault()
-
-        try {
-            const res = await fetch(
-                'http://localhost:5000/api/v1/courses/add',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-auth-token': isAuthed.user.accessToken
-                    },
-                    body: JSON.stringify({
-                        title: event.target.coursetitle.value,
-                        platform: event.target.courseplatform.value,
-                        link: event.target.courselink.value,
-                        provider: event.target.courseprovider.value,
-                        description: event.target.coursedescription.value,
-                    })
-                }
-            )
-
-            const u = await res.json()
-            if (res.status === 200) {
-                //console.log(u);
-                router.push('/search')
-            } else {
-                // went wrong
-                console.log(u);
-            }
-            
-        } catch (error) {
-            // went wrong
-            //console.log(u);
-        }
+        setLoading(true)
+        await add_course(event, router, user, setWentWrong, setLoading)
     }
 
     return (
@@ -60,7 +34,8 @@ function addcourse() {
                 <main>
                     <div className="container">
                         <h1>Add a Course</h1>
-                        <form className='form' onSubmit={addAcourse}>
+                        {loading ? <Loading /> : <form className='form' onSubmit={addAcourse}>
+                            {wentWrong ? <Warning /> : <></>}
                             <div className="inner">
                                 <Input name="coursetitle" type="text" label="Course Title *" placeholder="e.g Javascript 101: Intro to web dev"/>
                                 <div className="select">
@@ -78,7 +53,7 @@ function addcourse() {
                                 <TextArea label="Description *" name="coursedescription" placeholder="This group is for students who started studying web dev through the JavaScript 101: Intro to Web Dev Course" />
                             </div>
                             <Button text="Add course"/>
-                        </form>
+                        </form> }
                     </div>
                 </main>
             </AddCourse>

@@ -1,12 +1,13 @@
 import Header from '../styles/Navbar'
 import Link from 'next/link'
-import {useContext, useState} from 'react'
-import {AuthContext} from '../context/AuthContext'
+import { useContext, useState } from 'react'
+import { AuthContext } from '../context/AuthContext'
+import AuthService from '../auth/AuthService'
 import { useRouter } from 'next/router'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
-    const [isAuthed, setIsAuthed] = useContext(AuthContext);
+    const {initialState, isAuthenticated, setIsAuthenticated, user, setUser} = useContext(AuthContext);
     const router = useRouter()
 
     return (
@@ -14,7 +15,7 @@ const Navbar = () => {
             <div className="container">
                 <img src="nav/ham-menu.svg" className="mobile-menu" alt="Open Navigation" onClick={() => {setOpen(!open)}}/>
                 <Link href="/"><a className="logo"><img src="nav/logo.svg" alt="Feynity logo" /></a></Link>
-                {isAuthed.authed
+                {isAuthenticated
                 ? <nav className={`logged ${open && "menu-btn"}`}>
                     <img src="nav/close-nav.svg" className="mobile-menu-exit" alt="Close Navigation" onClick={() => {setOpen(!open)}}/>
                     <ul className="primary-nav">
@@ -52,14 +53,14 @@ const Navbar = () => {
                         </li>
                     </ul>
                     <ul className="secondary-nav">
-                        <li><span>{isAuthed.user.learner.points} points</span></li>
+                        <li><span>{user.userData.points} points</span></li>
                         <li>
                             <img src="nav/bell.png" alt="bell icon" />
                         </li>
                         <li>
                             <img className='profilepic' src="nav/profile-pic.png" alt="profile picture" />
                         </li>
-                        <li className='logout' onClick={() => {router.replace("/signin"); setIsAuthed({authed: false, user: {}}); localStorage.removeItem('accessToken');}}>
+                        <li className='logout' onClick={() => AuthService.logout(router,initialState, setIsAuthenticated, setUser)}>
                             <img src="nav/logout.png" alt="logout icon"/>
                             <span>Log out</span>
                         </li>

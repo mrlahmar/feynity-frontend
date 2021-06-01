@@ -9,7 +9,6 @@ import GroupStyle from '../../styles/GroupStyle'
 import AboutGroup from '../../components/AboutGroup'
 
 export default function about() {
-  const [isAuthed, setIsAuthed] = useContext(AuthContext)
   return (
     <>
         <Head>

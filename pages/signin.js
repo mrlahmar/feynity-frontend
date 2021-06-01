@@ -6,6 +6,8 @@ import { AuthContext } from '../context/AuthContext'
 import { useContext, useState } from 'react'
 import Warning from '../components/Warning'
 import withAuth from '../auth/withAuthForm'
+import AuthService from '../auth/AuthService'
+import Loading from '../components/Loading'
 
 const Main = styled.main`
     margin: 82px auto 0;
@@ -21,40 +23,14 @@ const Main = styled.main`
 `
 function signin() {
     const [wentWrong, setWentWrong] = useState(false)
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
+    const [loading, setLoading] = useState(false)
+    const {initialState, setUser, setIsAuthenticated} = useContext(AuthContext)
 
     const signinUser = async event => {
         setWentWrong(false)
+        setLoading(true)
         event.preventDefault()
-
-        const res = await fetch(
-            'http://localhost:5000/api/v1/learners/signin',
-            {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: event.target.email.value,
-                    password: event.target.password.value
-                })
-            }
-        )
-    
-        const user = await res.json()
-
-        // User is authenticated
-        if(user.hasOwnProperty('accessToken')) {
-            setIsAuthed({
-                authed: true,
-                user
-            })
-            localStorage.setItem('accessToken', user.accessToken)
-            return;
-        }
-        
-        // User is not authenticated
-        setWentWrong(true)
+        await AuthService.signin(event,initialState, setUser, setIsAuthenticated, setWentWrong, setLoading)
     }
 
     return (
@@ -66,11 +42,11 @@ function signin() {
                 <div className="container">
                     <h1>Sign In</h1>
                     {wentWrong ? <Warning /> : <></>}
-                    <form onSubmit={signinUser}>
+                    {loading ? <Loading /> : <form onSubmit={signinUser}>
                         <Input name="email" type="email" label="Email *" placeholder="e.g name@example.com"/>
                         <Input name="password" type="password" label="Password *" placeholder="e.g ***********"/>
                         <Button text="Sign In"/>
-                    </form>
+                    </form> }
                 </div>
             </Main>
         </>

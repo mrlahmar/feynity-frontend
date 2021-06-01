@@ -9,7 +9,6 @@ import ActivityStyle from '../styles/ActivityStyle'
 import withAuth from '../auth/withAuth'
 
 const myactivity = () => {
-  const [isAuthed, setIsAuthed] = useContext(AuthContext)
   return (
     <>
         <Head>

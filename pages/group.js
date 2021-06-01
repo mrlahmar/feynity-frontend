@@ -8,7 +8,7 @@ import { AuthContext } from '../context/AuthContext'
 import GroupStyle from '../styles/GroupStyle'
 
 export default function group() {
-  const [isAuthed, setIsAuthed] = useContext(AuthContext)
+    
   return (
     <>
         <Head>

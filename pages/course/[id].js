@@ -35,14 +35,14 @@ export const getStaticProps = async (context) => {
 
 
 const course = ({ninja}) => {
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
+    const {isAuthenticated} = useContext(AuthContext)
     return (
         <>
             <Head>
                 <title>Course N° {ninja.id}</title>
             </Head>
             <CourseStyle>
-                {isAuthed.authed
+                {isAuthenticated
                     ? <SideNav />
                     : <></>
                 }

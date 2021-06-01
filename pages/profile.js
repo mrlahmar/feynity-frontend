@@ -8,78 +8,26 @@ import Button from '../components/Button'
 import Warning from '../components/Warning'
 import ProfileStyle from '../styles/ProfileStyles/EditProfile'
 import { useRouter } from 'next/router'
+import Profile from '../utils/Profile'
+import Loading from '../components/Loading'
 
 function profile() {
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
+    const {initialState, user, setUser, setIsAuthenticated} = useContext(AuthContext)
     const router = useRouter()
     const [wentWrong, setWentWrong] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const deleteAccount = async () => {
         setWentWrong(false)
-        const res = await fetch(
-            'http://localhost:5000/api/v1/learners/delete',
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-auth-token': isAuthed.user.accessToken
-                }   
-            }
-        )
-
-        if (res.status === 200) {
-            localStorage.removeItem('accessToken')
-            setIsAuthed({isAuthed: false, user: {
-                learner: {
-                    name: null,
-                    email: null,
-                    points: null
-                }
-            }})
-            router.replace('/signin')
-        } else {
-            setWentWrong(true)
-        }
+        setLoading(true)
+        await Profile.deleteAccount(router, initialState, user, setUser, setIsAuthenticated, setWentWrong, setLoading)
     }
-
+    
     const updateAccount = async event => {
         setWentWrong(false)
+        setLoading(true)
         event.preventDefault()
-
-        try {
-            const res = await fetch(
-                'http://localhost:5000/api/v1/learners/update',
-                {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-auth-token': isAuthed.user.accessToken
-                    }, 
-                    body: JSON.stringify({
-                        email: event.target.email.value,
-                        name: event.target.name.value,
-                        password: event.target.password.value,
-                        rpassword: event.target.repeatpassword.value
-                    })
-                }
-            )
-    
-            if (res.status === 200) {
-                localStorage.removeItem('accessToken')
-                setIsAuthed({isAuthed: false, user: {
-                    learner: {
-                        name: null,
-                        email: null,
-                        points: null
-                    }
-                }})
-                router.replace('/signin')
-            } else {
-                setWentWrong(true)
-            }
-        } catch (error) {
-            setWentWrong(true)
-        }
+        await Profile.updateAccount(event, router, initialState, user, setUser, setIsAuthenticated, setWentWrong, setLoading)
     }
 
     return (
@@ -93,7 +41,7 @@ function profile() {
                     <div className="container">
                         <h1>Edit Profile</h1>
                         {wentWrong ? <Warning /> : <></>}
-                        <form className='form' onSubmit={updateAccount}>
+                        {loading ? <Loading /> : <form className='form' onSubmit={updateAccount}>
                             <img className='profilepic' src="profile/editprofile-pic.png" alt="Profile pic" />
                             <div className="inner">
                                 <Input req={false} name="email" type="email" label="Edit Email *" placeholder="e.g name@example.com"/>
@@ -103,7 +51,7 @@ function profile() {
                                 <Button type="button" text="Delete My Account" color="#ED694A" bgColor="#fff" borderColor="#ED694A" onClick={deleteAccount}/>
                                 <Button text="Update My Profile"/>
                             </div>
-                        </form>
+                        </form> }
                     </div>
                 </main>
             </ProfileStyle>

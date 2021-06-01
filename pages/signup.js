@@ -6,6 +6,8 @@ import Warning from '../components/Warning'
 import { AuthContext } from '../context/AuthContext'
 import { useContext, useState } from 'react'
 import withAuth from '../auth/withAuthForm'
+import AuthService from '../auth/AuthService'
+import Loading from '../components/Loading'
 
 const Main = styled.main`
     margin: 82px auto 0;
@@ -22,42 +24,14 @@ const Main = styled.main`
 
 function signup() {
     const [wentWrong, setWentWrong] = useState(false)
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
+    const [loading, setLoading] = useState(false)
+    const {initialState, setUser, setIsAuthenticated} = useContext(AuthContext)
 
     const registerUser = async event => {
         setWentWrong(false)
+        setLoading(true)
         event.preventDefault()
-
-        const res = await fetch(
-            'http://localhost:5000/api/v1/learners/signup',
-            {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: event.target.email.value,
-                    name: event.target.name.value,
-                    password: event.target.password.value,
-                    rpassword: event.target.repeatpassword.value
-                })
-            }
-        )
-    
-        const user = await res.json()
-
-        // User is authenticated
-        if(user.hasOwnProperty('accessToken')) {
-            setIsAuthed({
-                authed: true,
-                user
-            })
-            localStorage.setItem('accessToken', user.accessToken)
-            return;
-        }
-        
-        // User is not authenticated
-        setWentWrong(true)
+        await AuthService.signup(event,initialState, setUser, setIsAuthenticated, setWentWrong, setLoading)
     }
 
     return (
@@ -69,13 +43,13 @@ function signup() {
                 <div className="container">
                     <h1>Sign Up</h1>
                     {wentWrong ? <Warning /> : <></>}
-                    <form onSubmit={registerUser}>
+                    {loading ? <Loading /> : <form onSubmit={registerUser}>
                         <Input name="email" type="email" label="Email *" placeholder="e.g name@example.com"/>
                         <Input name="name" type="text" label="Full Name *" placeholder="e.g John Doe"/>
                         <Input name="password" type="password" label="Password *" placeholder="e.g ***********"/>
                         <Input name="repeatpassword" type="password" label="Repeat Password *" placeholder="e.g ***********"/>
                         <Button text="Sign Up"/>
-                    </form> 
+                    </form>}
                 </div>
             </Main>
         </>

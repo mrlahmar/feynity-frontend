@@ -12,7 +12,6 @@ import GroupStyle from '../../styles/GroupStyle'
 
 
 function newchallenge() {
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
     return (
         <>
             <Head>

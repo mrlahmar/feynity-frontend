@@ -7,7 +7,7 @@ import SideNav from '../components/SideNav'
 import { AuthContext } from '../context/AuthContext'
 
 const search = () => {
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
+    const {isAuthenticated} = useContext(AuthContext)
 
     return (
         <>
@@ -15,11 +15,11 @@ const search = () => {
                 <title>Search</title>
             </Head>
             <StyledSearch>
-                {isAuthed.authed
+                {isAuthenticated
                     ? <SideNav />
                     : <></>
                 }
-                <main className={`${isAuthed.authed && 'logged'}`}>
+                <main className={`${isAuthenticated && 'logged'}`}>
                     <p className='tag'>Search for courses and groups</p>
                     <div className="container">
                         <div className="search">

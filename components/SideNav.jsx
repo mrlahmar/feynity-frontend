@@ -4,7 +4,7 @@ import SideStyle from '../styles/SideNav'
 import { AuthContext } from '../context/AuthContext'
 
 const SideNav = () => {
-    const [isAuthed, setIsAuthed] = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     return (
         <SideStyle className="primary-side">
             <Link href="/profile">
@@ -12,7 +12,7 @@ const SideNav = () => {
                     <div className="profile-box">
                         <img src="/side-nav/profile-side.png" alt="Profile pic"/>
                             <a>
-                                <p>{isAuthed.user.learner.name}</p>
+                                <p>{user.userData.name}</p>
                                 <p>Edit profile</p>
                             </a>
                     </div>
