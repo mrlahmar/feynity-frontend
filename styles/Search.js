@@ -43,6 +43,10 @@ const StyledSearch = styled.div`
         max-width: 1440px;
         padding: unset;
     }
+
+    .fetcherr {
+        color: red;
+    }
 `
 
 export default StyledSearch

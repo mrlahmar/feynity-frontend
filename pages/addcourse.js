@@ -42,10 +42,10 @@ function addcourse() {
                                     <label htmlFor="courseplatform">Course Platform *</label>
                                     <select name="courseplatform" id="courseplatform" required>
                                         <option value="select" disabled selected>Select a platform</option>
-                                        <option value="coursera">Coursera</option>
-                                        <option value="edx">edX</option>
-                                        <option value="udemy">Udemy</option>
-                                        <option value="linkedinlearning">LinkedIn Learning</option>
+                                        <option value="Coursera">Coursera</option>
+                                        <option value="edX">edX</option>
+                                        <option value="Udemy">Udemy</option>
+                                        <option value="Linkedin Learning">LinkedIn Learning</option>
                                     </select>
                                 </div>
                                 <Input name="courselink" type="text" label="Course Link *" placeholder="e.g https://www.coursera.org/specializations/python"/>

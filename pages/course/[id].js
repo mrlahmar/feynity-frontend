@@ -8,12 +8,13 @@ import SideNav from '../../components/SideNav'
 import { AuthContext } from '../../context/AuthContext'
 
 export const getStaticPaths = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users')
-    const data = await res.json()
+    // fetch paths
+    const res = await fetch('http://localhost:5000/api/v1/courses/getall')
+    const courses = await res.json()
 
-    const paths = data.map(ninja => {
+    const paths = courses.map(course => {
         return {
-            params: {id: ninja.id.toString()}
+            params: {id: course.id.toString()}
         }
     })
 
@@ -25,40 +26,42 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
     const id = context.params.id;
-    const res = await fetch('https://jsonplaceholder.typicode.com/users/' + id)
-    const data = await res.json()
+    // fetching course info by id (param)
+    const res = await fetch(`http://localhost:5000/api/v1/courses/getById/${id}`)
+    const course = await res.json()
 
     return {
-        props: {ninja: data}
+        props: {course}
     }
 }
 
 
-const course = ({ninja}) => {
+const course = ({course}) => {
     const {isAuthenticated} = useContext(AuthContext)
     return (
         <>
             <Head>
-                <title>Course N° {ninja.id}</title>
+                <title>{course.title} Course</title>
             </Head>
             <CourseStyle>
                 {isAuthenticated
                     ? <SideNav />
                     : <></>
                 }
-                <main className={`${isAuthed.authed && 'logged'}`}>
+                <main className={`${isAuthenticated && 'logged'}`}>
                     <p className='tag'>Course</p>
                     <div className="container">
                         <div className="course">
                             <div className="course-info">
-                                <h1>Python for Everyone</h1>
-                                <p className='provider'>on <span>Coursera</span> - by <span>University of Michigan</span></p>
+                                <h1>{course.title}</h1>
+                                <p className='provider'>on <span>{course.platform}</span> - by <span>{course.provider}</span></p>
                                 <h4>Course Description</h4>
-                                <p className='description'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur enim numquam temporibus ex, obcaecati blanditiis consectetur doloribus, odit omnis, ad voluptatum.</p>
+                                <p className='description'>{course.description}</p>
                             </div>
                             <div className="ctas">
+                                {/* <Link href="/progress"><a><Button text="You took this course" color="#5DC39E" bgColor="#fff" borderColor="#5DC39E"/></a></Link> */}
                                 <Link href="/"><a><Button text="Join course"/></a></Link>
-                                <Link href="/"><a><Button text="Take on Coursera" color="#6573FF" bgColor="#fff" borderColor="#6573FF"/></a></Link>
+                                <Link href={`${course.link}`}><a><Button text={`See on ${course.platform}`}  color="#6573FF" bgColor="#fff" borderColor="#6573FF"/></a></Link>
                             </div>
                         </div>
                         <div className="related-groups">

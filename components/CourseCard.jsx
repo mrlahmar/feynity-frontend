@@ -45,14 +45,14 @@ const CourseCardStyle = styled.div`
     }
 `
 
-const CourseCard = () => {
+const CourseCard = ({id, title, platform, nstudents}) => {
     return (
         <CourseCardStyle>
             <p className='tag'><span className='label'>Course</span></p>
-            <Link href="/"><a><h3>CS50: Introduction to Computer Science</h3></a></Link>
-            <p className='on'>On <Link href="/"><a><span>edX</span></a></Link></p>
-            <p className='students'>8k Students</p>
-            <Link href="/"><a><Button text='See Course' marginbottom='0'/></a></Link>
+            <Link href={`/course/${id}`}><a><h3>{title}</h3></a></Link>
+            <p className='on'>On <Link href="/"><a><span>{platform}</span></a></Link></p>
+            <p className='students'>{nstudents} Students</p>
+            <Link href={`/course/${id}`}><a><Button text='See Course' marginbottom='0'/></a></Link>
         </CourseCardStyle>
     )
 }

@@ -55,11 +55,11 @@ const Label = styled.label`
 
 `
 
-function Input({name, type, label, placeholder, borderColor, height, labelCheck, maxwidth, req}) {
+function Input({name, type, label, placeholder, borderColor, height, labelCheck, maxwidth, req, onChange}) {
     return (
         <Label htmlFor={name} borderColor={borderColor} height={height} maxwidth={maxwidth}>
             {labelCheck ? <span>{label}</span> : <></>}
-            <input type={type} id={name} name={name} placeholder={placeholder} required={req}/>
+            <input type={type} id={name} name={name} placeholder={placeholder} required={req} onChange={onChange}/>
         </Label>
     )
 }

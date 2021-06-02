@@ -22,7 +22,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/addcourse">
                         <a>
-                            <img src="side-nav/create-group.svg" alt="Add a course"/>
+                            <img src="/side-nav/create-group.svg" alt="Add a course"/>
                             <span>Add a course</span>
                         </a>
                     </Link>
@@ -30,7 +30,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/addgroup">
                         <a>
-                            <img src="side-nav/create-group.svg" alt="Create a group"/>
+                            <img src="/side-nav/create-group.svg" alt="Create a group"/>
                             <span>Create a group</span>
                         </a>
                     </Link>
@@ -38,7 +38,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/mygroups">
                         <a>
-                            <img src="side-nav/my-groups.svg" alt="My Groups"/>
+                            <img src="/side-nav/my-groups.svg" alt="My Groups"/>
                             <span>My Groups</span>
                         </a>
                     </Link>
@@ -46,7 +46,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/mycourses">
                         <a>
-                            <img src="side-nav/my-courses.svg" alt="My Courses"/>
+                            <img src="/side-nav/my-courses.svg" alt="My Courses"/>
                             <span>My Courses</span>
                         </a>
                     </Link>
@@ -54,7 +54,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/mychallenges">
                         <a>
-                            <img src="side-nav/my-challenges.svg" alt="My Challenges"/>
+                            <img src="/side-nav/my-challenges.svg" alt="My Challenges"/>
                             <span>My Challenges</span>
                         </a>
                     </Link>

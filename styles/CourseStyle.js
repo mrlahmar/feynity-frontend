@@ -42,10 +42,12 @@ const CourseStyle = styled.div`
             display: flex;
 
             .course-info {
+                flex: 3;
                 padding-right: 20px;
             }
 
             .ctas {
+                flex: 1;
                 margin-top: 30px;
             }
         }
