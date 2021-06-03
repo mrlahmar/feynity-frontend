@@ -1,11 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Head from 'next/head'
 import CourseStyle from '../../styles/CourseStyle'
 import Link from 'next/link'
 import Button from '../../components/Button'
 import GroupCard from '../../components/GroupCard'
 import SideNav from '../../components/SideNav'
+import Warning from '../../components/Warning'
+import Loading from '../../components/Loading'
 import { AuthContext } from '../../context/AuthContext'
+import { take_course } from '../../utils/Course'
+import { useRouter } from 'next/router'
 
 export const getStaticPaths = async () => {
     // fetch paths
@@ -35,9 +39,20 @@ export const getStaticProps = async (context) => {
     }
 }
 
-
 const course = ({course}) => {
-    const {isAuthenticated} = useContext(AuthContext)
+    const {isAuthenticated, user} = useContext(AuthContext)
+    const [loading, setLoading] = useState(false)
+    const [wentWrong, setWentWrong] = useState(false)
+    const router = useRouter()
+
+    const takeCourse = async () => {
+        if(isAuthenticated) {
+            await take_course(router,user,course,setLoading, setWentWrong)
+        } else {
+            router.push('/signin')
+        }
+    }
+
     return (
         <>
             <Head>
@@ -51,7 +66,8 @@ const course = ({course}) => {
                 <main className={`${isAuthenticated && 'logged'}`}>
                     <p className='tag'>Course</p>
                     <div className="container">
-                        <div className="course">
+                        {wentWrong ? <Warning /> : <></>}
+                        {loading ? <Loading /> : <div className="course">
                             <div className="course-info">
                                 <h1>{course.title}</h1>
                                 <p className='provider'>on <span>{course.platform}</span> - by <span>{course.provider}</span></p>
@@ -60,10 +76,10 @@ const course = ({course}) => {
                             </div>
                             <div className="ctas">
                                 {/* <Link href="/progress"><a><Button text="You took this course" color="#5DC39E" bgColor="#fff" borderColor="#5DC39E"/></a></Link> */}
-                                <Link href="/"><a><Button text="Join course"/></a></Link>
-                                <Link href={`${course.link}`}><a><Button text={`See on ${course.platform}`}  color="#6573FF" bgColor="#fff" borderColor="#6573FF"/></a></Link>
+                                <Button text="Join course" onClick={takeCourse}/>
+                                <Link href={`${course.link}`}><a target="_blank"><Button text={`See on ${course.platform}`}  color="#6573FF" bgColor="#fff" borderColor="#6573FF"/></a></Link>
                             </div>
-                        </div>
+                        </div> }
                         <div className="related-groups">
                             <h4>Related Groups</h4>
                             <div className="related-grp">
