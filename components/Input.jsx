@@ -13,13 +13,13 @@ const Label = styled.label`
 
     input {
         width: 100%;
-        min-width: 250px;
+        min-width: ${props => props.minwidth};
         max-width: ${props => props.maxwidth};
         height: ${props => props.height};
         border: 2px solid ${props => props.borderColor};
         border-radius: 10px;
         margin-bottom: 20px;
-        text-indent: 15px;
+        text-indent: ${props => props.textindent};
         outline: none;
     }
 
@@ -55,9 +55,9 @@ const Label = styled.label`
 
 `
 
-function Input({name, type, label, placeholder, borderColor, height, labelCheck, maxwidth, req, onChange}) {
+function Input({name, type, label, placeholder, borderColor, height, labelCheck, maxwidth, minwidth, req, onChange, textindent}) {
     return (
-        <Label htmlFor={name} borderColor={borderColor} height={height} maxwidth={maxwidth}>
+        <Label htmlFor={name} borderColor={borderColor} height={height} maxwidth={maxwidth} minwidth={minwidth} textindent={textindent}>
             {labelCheck ? <span>{label}</span> : <></>}
             <input type={type} id={name} name={name} placeholder={placeholder} required={req} onChange={onChange}/>
         </Label>
@@ -74,7 +74,9 @@ Input.defaultProps = {
     height: "45px",
     labelCheck: true,
     maxwidth: "350px",
-    req: true
+    req: true,
+    minwidth: "250px",
+    textindent: "15px"
 }
 
 export default Input

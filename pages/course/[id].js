@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Head from 'next/head'
 import CourseStyle from '../../styles/CourseStyle'
 import Link from 'next/link'
@@ -42,8 +42,47 @@ export const getStaticProps = async (context) => {
 const course = ({course}) => {
     const {isAuthenticated, user} = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
+    const [load, setLoad] = useState(true)
     const [wentWrong, setWentWrong] = useState(false)
+    const [took, setTook] = useState(false)
     const router = useRouter()
+
+    useEffect(() => {
+        const checkTook = async () => {
+            if(!isAuthenticated) {
+                return;
+            }
+
+            try {
+                // fetch end point
+                const res = await fetch(
+                    'http://localhost:5000/api/v1/courses/check',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-auth-token': user.accessToken
+                        },
+                        body: JSON.stringify({
+                            id: course.id
+                        })
+                    }
+                ) 
+
+                if (res.status !== 200) {
+                    setTook(true)
+                    setLoad(false)
+                } else {
+                    setLoad(false)
+                }
+            } catch (error) {
+                setLoad(false)
+                router.reload(window.location.pathname)
+            }
+        }
+
+        checkTook()
+    }, [])
 
     const takeCourse = async () => {
         if(isAuthenticated) {
@@ -75,8 +114,8 @@ const course = ({course}) => {
                                 <p className='description'>{course.description}</p>
                             </div>
                             <div className="ctas">
-                                {/* <Link href="/progress"><a><Button text="You took this course" color="#5DC39E" bgColor="#fff" borderColor="#5DC39E"/></a></Link> */}
-                                <Button text="Join course" onClick={takeCourse}/>
+                                { load ? "" : took ? <Link href="/progress"><a><Button text="See Progress" color="#5DC39E" bgColor="#fff" borderColor="#5DC39E"/></a></Link>
+                                : <Button text="Join course" onClick={takeCourse}/> }
                                 <Link href={`${course.link}`}><a target="_blank"><Button text={`See on ${course.platform}`}  color="#6573FF" bgColor="#fff" borderColor="#6573FF"/></a></Link>
                             </div>
                         </div> }
