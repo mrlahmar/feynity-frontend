@@ -18,6 +18,7 @@ const ProfileStyle = styled.div`
 
         img {
             margin-bottom: 15px;
+            max-width: 150px;
         }
     }
 

@@ -4,7 +4,7 @@ const CourseStyle = styled.div`
     padding: 0 15px 0;
 
     main {
-        margin: 100px auto 0px;
+        margin: 120px auto 0px;
         .tag {
             margin-bottom: 15px;
         }
@@ -67,7 +67,7 @@ const CourseStyle = styled.div`
 
     @media (min-width: 1440px) {
         main {
-            margin: 100px auto 0;
+            margin: 120px auto 0;
         }
         
         margin: 0 auto;

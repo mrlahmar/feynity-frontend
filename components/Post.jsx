@@ -42,7 +42,7 @@ const Post = () => {
             </div>
 
             <div className="comment-form">
-                <CommentForm src="post/comment-form-profile.png"/>
+                <CommentForm src="/profile.png"/>
             </div>
         </PostContainer>
     )

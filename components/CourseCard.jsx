@@ -51,7 +51,7 @@ const CourseCard = ({id, title, platform, nstudents}) => {
             <p className='tag'><span className='label'>Course</span></p>
             <Link href={`/course/${id}`}><a><h3>{title}</h3></a></Link>
             <p className='on'>On <Link href="/"><a><span>{platform}</span></a></Link></p>
-            <p className='students'>{nstudents} Students</p>
+            <p className='students'>{nstudents} Student{nstudents !== 1 ? "s" : ""}</p>
             <Link href={`/course/${id}`}><a><Button text='See Course' marginbottom='0'/></a></Link>
         </CourseCardStyle>
     )

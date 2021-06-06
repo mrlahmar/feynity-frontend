@@ -36,6 +36,7 @@ const SideStyle = styled.aside`
         img {
             border-radius: 50%;
             margin-right: .7em;
+            max-width: 70px;
         }
 
         a {

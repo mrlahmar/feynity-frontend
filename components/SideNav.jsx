@@ -10,7 +10,7 @@ const SideNav = () => {
             <Link href="/profile">
                 <a>
                     <div className="profile-box">
-                        <img src="/side-nav/profile-side.png" alt="Profile pic"/>
+                        <img src="/profile.png" alt="Profile pic"/>
                             <a>
                                 <p>{user.userData.name}</p>
                                 <p>Edit profile</p>
@@ -28,7 +28,7 @@ const SideNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/addgroup">
+                    <Link href="/creategroup">
                         <a>
                             <img src="/side-nav/create-group.svg" alt="Create a group"/>
                             <span>Create a group</span>

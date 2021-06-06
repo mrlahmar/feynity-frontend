@@ -42,7 +42,7 @@ function profile() {
                         <h1>Edit Profile</h1>
                         {wentWrong ? <Warning /> : <></>}
                         {loading ? <Loading /> : <form className='form' onSubmit={updateAccount}>
-                            <img className='profilepic' src="profile/editprofile-pic.png" alt="Profile pic" />
+                            <img className='profilepic' src="/profile.png" alt="Profile pic" />
                             <div className="inner">
                                 <Input req={false} name="email" type="email" label="Edit Email *" placeholder="e.g name@example.com"/>
                                 <Input req={false} name="name" type="text" label="Edit Full Name *" placeholder="e.g John Doe"/>

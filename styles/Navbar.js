@@ -295,6 +295,7 @@ const Header = styled.header`
 
     .profilepic {
         border-radius: 50%;
+        max-width: 35px;
     }
 `
 

@@ -8,6 +8,7 @@ const Form = styled.form`
     img {
         margin-right: 10px;
         border-radius: 50%;
+        max-width: 35px;
     }
 
     input {

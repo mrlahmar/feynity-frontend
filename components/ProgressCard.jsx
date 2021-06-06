@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import Button from './Button'
-import Input from './Input'
+import InputNumber from './InputNumber'
 import styled from 'styled-components'
 import { AuthContext } from '../context/AuthContext'
 import { useRouter } from 'next/router'
@@ -143,7 +143,7 @@ const ProgressCard = ({id, title, platform, progress}) => {
             </div>
             <div className="cta">
                 <form onSubmit={updateProgress}>
-                    <Input name="progress" minwidth="20px" maxwidth="45px" placeholder="%" textindent="7px"/>
+                    <InputNumber name="progress" minwidth="45px" maxwidth="45px" placeholder="%" textindent="7px"/>
                     <Button text='Update Progress' marginbottom='10px'/>
                 </form>
                 <Button text='Quit' color="#6573FF" bgColor="#fff" borderColor="#6573FF" onClick={quitCourse}/>

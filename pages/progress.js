@@ -10,7 +10,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 const P = styled.p`
-    color: red
+    color: red;
 `
 
 const Span = styled.span`
@@ -69,7 +69,7 @@ const progress = () => {
                     <div className="inner-container">
                         <div className="stats">
                             <p className="points">{user.userData.points} points</p>
-                            <p className="level">Intermediate Level</p>
+                            <p className="level">{user.userData.points < 100 ? "Beginner Level" : user.userData.points >= 100 && user.userData.points < 300 ? "Intermediate Level" : "Expert Level"}</p>
                         </div>
                         <div className="progress-cards">
                             {

@@ -58,7 +58,7 @@ const Navbar = () => {
                             <img src="/nav/bell.png" alt="bell icon" />
                         </li>
                         <li>
-                            <img className='profilepic' src="/nav/profile-pic.png" alt="profile picture" />
+                            <img className='profilepic' src="/profile.png" alt="profile picture" />
                         </li>
                         <li className='logout' onClick={() => AuthService.logout(router,initialState, setIsAuthenticated, setUser)}>
                             <img src="/nav/logout.png" alt="logout icon"/>
