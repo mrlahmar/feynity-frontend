@@ -87,3 +87,13 @@ input::-moz-placeholder {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+
+select {
+  margin-bottom: 15px;
+  height: 45px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  border-color: #657FF6;
+  text-indent: 8px;
+}

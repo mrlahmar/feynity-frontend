@@ -46,14 +46,14 @@ const GroupCardStyle = styled.div`
     }
 `
 
-const GroupCard = ({marginbottom}) => {
+const GroupCard = ({id,name,coursename,courseid,nmembers,marginbottom}) => {
     return (
         <GroupCardStyle marginbottom={marginbottom}>
             <p className='tag'><span className='label'>Group</span></p>
-            <Link href="/"><a><h3>Tunisian Python Community</h3></a></Link>
-            <p className='basedon'>Based On <Link href="/"><a><span>Python for Everyone</span></a></Link></p>
-            <p className='members'>100 Members</p>
-            <Link href="/"><a><Button text='Visit Group' marginbottom='0'/></a></Link>
+            <Link href={`/group/${id}`}><a><h3>{name}</h3></a></Link>
+            <p className='basedon'>Based On <Link href={`/course/${courseid}`}><a><span>{coursename}</span></a></Link></p>
+            <p className='members'>{nmembers} Member{nmembers !== 1 ? "s" : ""}</p>
+            <Link href={`/group/${id}`}><a><Button text='Visit Group' marginbottom='0'/></a></Link>
         </GroupCardStyle>
     )
 }
