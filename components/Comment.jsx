@@ -26,6 +26,7 @@ const Cmnt = styled.div`
     img {
         margin-right: 12px;
         border-radius: 50%;
+        max-width: 35px;
     }
 `
 

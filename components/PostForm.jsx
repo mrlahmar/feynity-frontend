@@ -20,6 +20,7 @@ const PostFormStyle = styled.div`
 
         img {
             margin-right: 25px;
+            max-width: 40px;
         }
 
         .inputs {
@@ -33,7 +34,7 @@ const PostForm = ({marginbottom}) => {
     return (
         <PostFormStyle marginbottom={marginbottom}>
             <div className="container">
-                <img src="postform/comment-form-profile.png" alt="profile pic" />
+                <img src="/profile.png" alt="profile pic" />
                 <div className="inputs">
                     <Input type="text" name="posttitle" maxwidth="100%" placeholder="Best JS Tools" label="Post Title"/>
                     <TextArea name="postcontent" width="100%" height="100px" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut iste reiciendis, repudiandae eos veniam exercitationem rerum tempore molestiae quo odit." label="Post Content"/>

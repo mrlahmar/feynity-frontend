@@ -8,7 +8,7 @@ const Post = () => {
         <PostContainer>
             <div className="top">
                 <div className="post-info">
-                    <img src="post/profile.png" alt="Profile picture"/>
+                    <img src="/profile.png" alt="Profile picture"/>
                     <div className="post-details">
                         <h3>Best Javascript Libraries</h3>
                         <span>Julia Mary in JavaScript Intermediate</span>
@@ -23,21 +23,21 @@ const Post = () => {
 
             <div className="post-stats">
                 <span>
-                    <img src="post/heart.png" alt="heart icon"/>
+                    <img src="/post/heart.png" alt="heart icon"/>
                     3
                 </span>
                 <span> - 3 comments</span>
             </div>
 
             <div className="buttons">
-                <PostButton src="post/heart-btn.png" alt="like btn" text="Like" marginright="20px"/>
-                <PostButton src="post/comment-btn.png" alt="comment btn" text="Comment"/>
+                <PostButton src="/post/heart-btn.png" alt="like btn" text="Like" marginright="20px"/>
+                <PostButton src="/post/comment-btn.png" alt="comment btn" text="Comment"/>
             </div>
 
             <div className="all-comments">
                 <span className="cmnts">Comments</span>
                 <div className="comments">
-                    <Comment writer="Mary C." src="post/comment-profile.png" text="Lorem ipsum dolor sit amet consectetur adipisicing." time="2 min ago"/>
+                    <Comment writer="Mary C." src="/profile.png" text="Lorem ipsum dolor sit amet consectetur adipisicing." time="2 min ago"/>
                 </div>
             </div>
 

@@ -1,13 +1,13 @@
 import { useContext } from 'react'
-import { AuthContext } from '../../../context/AuthContext'
-import withAuth from '../../../auth/withAuth'
+import { AuthContext } from '../../../../context/AuthContext'
+import withAuth from '../../../../auth/withAuth'
 import Head from 'next/head'
-import SideNav from '../../../components/SideNav'
-import Button from '../../../components/Button'
-import StepSub from '../../../components/StepSub'
-import Members from '../../../components/Members'
-import GroupStyle from '../../../styles/GroupStyle'
-import Req from '../../../styles/Req'
+import SideNav from '../../../../components/SideNav'
+import Button from '../../../../components/Button'
+import StepSub from '../../../../components/StepSub'
+import Members from '../../../../components/Members'
+import GroupStyle from '../../../../styles/GroupStyle'
+import Req from '../../../../styles/Req'
 
 function submit() {
     return (

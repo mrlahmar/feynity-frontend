@@ -3,7 +3,7 @@ import Link from 'next/link'
 import GroupSideStyle from '../styles/GroupSideNav'
 import { AuthContext } from '../context/AuthContext'
 
-const SideNav = () => {
+const GroupSideNav = ({owner,name,course,nmembers}) => {
     //const [isAuthed, setIsAuthed] = useContext(AuthContext)
     return (
         <GroupSideStyle className="primary-side">
@@ -11,9 +11,9 @@ const SideNav = () => {
                 <a>
                     <div className="group-box">
                         <a>
-                            <h2>Tunisian Python Community</h2>
-                            <p className="course">Based on <span>Python for Everyone</span></p>
-                            <p className="nmembers">100 Members</p>
+                            <h2>{name}</h2>
+                            <p className="course">Based on <span>{course}</span></p>
+                            <p className="nmembers">{nmembers} Members</p>
                         </a>
                     </div>
                 </a>
@@ -22,7 +22,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/feed">
                         <a>
-                            <img src="group-side/group-feed.svg" alt="Group feed"/>
+                            <img src="/group-side/group-feed.svg" alt="Group feed"/>
                             <span>Group Feed</span>
                         </a>
                     </Link>
@@ -30,7 +30,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/addcourse">
                         <a>
-                            <img src="group-side/about-the-group.svg" alt="About the group"/>
+                            <img src="/group-side/about-the-group.svg" alt="About the group"/>
                             <span>About the Group</span>
                         </a>
                     </Link>
@@ -38,7 +38,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/addgroup">
                         <a>
-                            <img src="group-side/new-challenge.svg" alt="New challenge"/>
+                            <img src="/group-side/new-challenge.svg" alt="New challenge"/>
                             <span>New Challenge</span>
                         </a>
                     </Link>
@@ -46,7 +46,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/mygroups">
                         <a>
-                            <img src="group-side/challenge-req.svg" alt="Challenge Requests"/>
+                            <img src="/group-side/challenge-req.svg" alt="Challenge Requests"/>
                             <span>Challenge Requests</span>
                         </a>
                     </Link>
@@ -54,7 +54,7 @@ const SideNav = () => {
                 <li>
                     <Link href="/mychallenges">
                         <a>
-                            <img src="group-side/my-challenges.svg" alt="My Challenges"/>
+                            <img src="/group-side/my-challenges.svg" alt="My Challenges"/>
                             <span>My Challenges</span>
                         </a>
                     </Link>
@@ -62,16 +62,16 @@ const SideNav = () => {
                 <li>
                     <Link href="/mycourses">
                         <a>
-                            <img src="group-side/all-members.svg" alt="All members"/>
+                            <img src="/group-side/all-members.svg" alt="All members"/>
                             <span>All Members</span>
                         </a>
                     </Link>
                 </li>
                 {
-                    false ? <li>
+                    owner ? <li>
                         <Link href="/mycourses">
                             <a>
-                                <img src="group-side/group-settings.svg" alt="Group Settings"/>
+                                <img src="/group-side/group-settings.svg" alt="Group Settings"/>
                                 <span>Group Settings</span>
                             </a>
                         </Link>
@@ -83,4 +83,4 @@ const SideNav = () => {
     )
 }
 
-export default SideNav
+export default GroupSideNav

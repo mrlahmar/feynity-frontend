@@ -8,6 +8,10 @@ const M = styled.div`
     justify-content: space-between;
     width: 300px;
     margin-bottom: 18px;
+
+    img {
+        max-width: 30px;
+    }
 `
 
 const ChBtn = styled.button`
@@ -43,84 +47,84 @@ const M10 = () => {
     return (
         <>
             <M>
-                <img src="postform/comment-form-profile.png" alt="profile pic" />
+                <img src="/profile.png" alt="profile pic" />
                 <p>Flen Ben Flen</p>
                 <Link href="/group/challenge">
                     <a>
                         <ChBtn>
-                            <img src="challenge/fire.png" alt="fire icon" />
+                            <img src="/challenge/fire.png" alt="fire icon" />
                             Challenge
                         </ChBtn>
                     </a>
                 </Link>
             </M>
             <M>
-                <img src="postform/comment-form-profile.png" alt="profile pic" />
+                <img src="/profile.png" alt="profile pic" />
                 <p>Flen Ben Flen</p>
                 <Link href="/group/challenge">
                     <a>
                         <ChBtn>
-                            <img src="challenge/fire.png" alt="fire icon" />
+                            <img src="/challenge/fire.png" alt="fire icon" />
                             Challenge
                         </ChBtn>
                     </a>
                 </Link>
             </M>
             <M>
-                <img src="postform/comment-form-profile.png" alt="profile pic" />
+                <img src="/profile.png" alt="profile pic" />
                 <p>Flen Ben Flen</p>
                 <Link href="/group/challenge">
                     <a>
                         <ChBtn>
-                            <img src="challenge/fire.png" alt="fire icon" />
+                            <img src="/challenge/fire.png" alt="fire icon" />
                             Challenge
                         </ChBtn>
                     </a>
                 </Link>
             </M>
             <M>
-                <img src="postform/comment-form-profile.png" alt="profile pic" />
+                <img src="/profile.png" alt="profile pic" />
                 <p>Flen Ben Flen</p>
                 <Link href="/group/challenge">
                     <a>
                         <ChBtn>
-                            <img src="challenge/fire.png" alt="fire icon" />
+                            <img src="/challenge/fire.png" alt="fire icon" />
                             Challenge
                         </ChBtn>
                     </a>
                 </Link>
             </M>
             <M>
-                <img src="postform/comment-form-profile.png" alt="profile pic" />
+                <img src="/profile.png" alt="profile pic" />
                 <p>Flen Ben Flen</p>
                 <Link href="/group/challenge">
                     <a>
                         <ChBtn>
-                            <img src="challenge/fire.png" alt="fire icon" />
+                            <img src="/challenge/fire.png" alt="fire icon" />
                             Challenge
                         </ChBtn>
                     </a>
                 </Link>
             </M>
             <M>
-                <img src="postform/comment-form-profile.png" alt="profile pic" />
+                <img src="/profile.png" alt="profile pic" />
                 <p>Flen Ben Flen</p>
                 <Link href="/group/challenge">
                     <a>
                         <ChBtn>
-                            <img src="challenge/fire.png" alt="fire icon" />
+                            <img src="/challenge/fire.png" alt="fire icon" />
                             Challenge
                         </ChBtn>
                     </a>
                 </Link>
             </M>
             <M>
-                <img src="postform/comment-form-profile.png" alt="profile pic" />
+                <img src="/profile.png" alt="profile pic" />
                 <p>Flen Ben Flen</p>
                 <Link href="/group/challenge">
                     <a>
                         <ChBtn>
-                            <img src="challenge/fire.png" alt="fire icon" />
+                            <img src="/challenge/fire.png" alt="fire icon" />
                             Challenge
                         </ChBtn>
                     </a>
