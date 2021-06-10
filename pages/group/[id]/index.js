@@ -52,6 +52,7 @@ const group = ({group}) => {
     const {user} = useContext(AuthContext)
     const [owner, setOwner] = useState(false)
     const [wentWrong, setWentWrong] = useState(false)
+    const [wentWrongLeave, setWentWrongLeave] = useState(false)
     const [joined, setJoined] = useState(false)
     const [loading, setLoading] = useState(true)
     const router = useRouter()
@@ -76,13 +77,17 @@ const group = ({group}) => {
         await Group.joinGroup(router,user,group,setJoined,setLoading,setWentWrong)
     }
 
+    const leaveGroup = async () => {
+        await Group.leaveGroup(router,user,group,setWentWrongLeave)
+    }
+
     return (
         <>
             <Head>
                 <title>{group.name}</title>
             </Head>
             <GroupStyle>
-                <GroupSideNav owner={owner} joined={joined} name={group.name} course={group.course} nmembers={group.number_of_members}/>
+                <GroupSideNav owner={owner} joined={joined} id={group.id} name={group.name} course={group.course} nmembers={group.number_of_members}/>
                 <div className="container">
                     <main>
                         {wentWrong ? <Warning msg="You must take the course first"/>: ""}
@@ -99,7 +104,8 @@ const group = ({group}) => {
                     </main>
                     {joined && !owner? <aside className="suggested">
                         <h3>Options</h3>
-                        <Button text="Leave Group" color="#ED694A" bgColor="#fff" borderColor="#ED694A" minwidth="250px"/>
+                        {wentWrongLeave ? <Warning/> : ""}
+                        <Button text="Leave Group" color="#ED694A" bgColor="#fff" borderColor="#ED694A" minwidth="250px" onClick={leaveGroup}/>
                     </aside> : "" }
                 </div>
             </GroupStyle>

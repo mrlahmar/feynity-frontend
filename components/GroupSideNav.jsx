@@ -3,7 +3,7 @@ import Link from 'next/link'
 import GroupSideStyle from '../styles/GroupSideNav'
 import { AuthContext } from '../context/AuthContext'
 
-const GroupSideNav = ({owner,joined,name,course,nmembers}) => {
+const GroupSideNav = ({owner,joined,id,name,course,nmembers}) => {
     //const [isAuthed, setIsAuthed] = useContext(AuthContext)
     return (
         <GroupSideStyle className="primary-side">
@@ -20,7 +20,7 @@ const GroupSideNav = ({owner,joined,name,course,nmembers}) => {
             </Link>
             <ul>
                 <li>
-                    <Link href="/feed">
+                    <Link href={`/group/${id}`}>
                         <a>
                             <img src="/group-side/group-feed.svg" alt="Group feed"/>
                             <span>Group Feed</span>
@@ -28,7 +28,7 @@ const GroupSideNav = ({owner,joined,name,course,nmembers}) => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/addcourse">
+                    <Link href={`/group/${id}/about`}>
                         <a>
                             <img src="/group-side/about-the-group.svg" alt="About the group"/>
                             <span>About the Group</span>
@@ -37,7 +37,7 @@ const GroupSideNav = ({owner,joined,name,course,nmembers}) => {
                 </li>
                 {joined ?
                 <><li>
-                    <Link href="/addgroup">
+                    <Link href={`/group/${id}/newchallenge`}>
                         <a>
                             <img src="/group-side/new-challenge.svg" alt="New challenge"/>
                             <span>New Challenge</span>
@@ -45,7 +45,7 @@ const GroupSideNav = ({owner,joined,name,course,nmembers}) => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/mygroups">
+                    <Link href={`/group/${id}/challenge/requests`}>
                         <a>
                             <img src="/group-side/challenge-req.svg" alt="Challenge Requests"/>
                             <span>Challenge Requests</span>
@@ -61,7 +61,7 @@ const GroupSideNav = ({owner,joined,name,course,nmembers}) => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/mycourses">
+                    <Link href={`/group/${id}/members`}>
                         <a>
                             <img src="/group-side/all-members.svg" alt="All members"/>
                             <span>All Members</span>
@@ -70,7 +70,7 @@ const GroupSideNav = ({owner,joined,name,course,nmembers}) => {
                 </li> </>: "" }
                 {
                     owner ? <li>
-                        <Link href="/mycourses">
+                        <Link href={`/group/${id}/settings`}>
                             <a>
                                 <img src="/group-side/group-settings.svg" alt="Group Settings"/>
                                 <span>Group Settings</span>

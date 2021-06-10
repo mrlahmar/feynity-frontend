@@ -68,5 +68,36 @@ export default {
             setLoading(false)
             setWentWrong(true)
         }
+    },
+
+
+    leaveGroup: async (router,user,group,setWentWrongLeave) => {
+        try {
+            // fetch end point
+            const res = await fetch(
+                'http://localhost:5000/api/v1/groups/leave',
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': user.accessToken
+                    },
+                    body: JSON.stringify({
+                        'groupid': group.id
+                    })
+                }
+            )
+
+            const data = await res.json()
+
+            if (res.status === 200 && data.deleted === true) {
+                // parse data
+                router.push(`/mygroups`)
+            } else {
+                setWentWrongLeave(true)
+            }
+        } catch (error) {
+            setWentWrongLeave(true)
+        }
     }
 }
