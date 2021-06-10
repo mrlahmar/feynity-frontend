@@ -34,12 +34,15 @@ export const getStaticProps = async (context) => {
     const res = await fetch(`http://localhost:5000/api/v1/courses/getById/${id}`)
     const course = await res.json()
 
+    const groupRes = await fetch(`http://localhost:5000/api/v1/groups/getGroups/${course.id}`)
+    const groups = await groupRes.json()
+
     return {
-        props: {course}
+        props: {course,groups}
     }
 }
 
-const course = ({course}) => {
+const course = ({course,groups}) => {
     const {isAuthenticated, user} = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
     const [load, setLoad] = useState(true)
@@ -122,10 +125,11 @@ const course = ({course}) => {
                         <div className="related-groups">
                             <h4>Related Groups</h4>
                             <div className="related-grp">
-                                <GroupCard />
-                                <GroupCard />
-                                <GroupCard />
-                            </div>
+                                {
+                                    groups.length === 0 ? <p>No Groups for this Course</p> :
+                                    groups.map(group => <GroupCard key={group.id} id={group.id} name={group.name} courseid={group.courseid} coursename={group.course} nmembers={group.number_of_members}/>)
+                                }
+                                </div>
                         </div>
                     </div>
                 </main>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 const Btn = styled.button`
     width: 100%;
+    min-width: ${props => props.minwidth};
     max-width: ${props => props.maxwidth};
     height: 45px;
     background-color: ${props => props.bgColor};
@@ -24,9 +25,9 @@ const Btn = styled.button`
     }
 `
 
-function Button({type,text,color,bgColor,borderColor,marginbottom,maxwidth,marginright,onClick}) {
+function Button({type,text,color,bgColor,borderColor,marginbottom,maxwidth,marginright,onClick,minwidth}) {
     return (
-        <Btn type={type} color={color} bgColor={bgColor} borderColor={borderColor} marginbottom={marginbottom} maxwidth={maxwidth} marginright={marginright} onClick={onClick}>
+        <Btn type={type} color={color} bgColor={bgColor} borderColor={borderColor} marginbottom={marginbottom} maxwidth={maxwidth} marginright={marginright} onClick={onClick} minwidth={minwidth}>
             {text}
         </Btn>
     )

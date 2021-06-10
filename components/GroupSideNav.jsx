@@ -3,7 +3,7 @@ import Link from 'next/link'
 import GroupSideStyle from '../styles/GroupSideNav'
 import { AuthContext } from '../context/AuthContext'
 
-const GroupSideNav = ({owner,name,course,nmembers}) => {
+const GroupSideNav = ({owner,joined,name,course,nmembers}) => {
     //const [isAuthed, setIsAuthed] = useContext(AuthContext)
     return (
         <GroupSideStyle className="primary-side">
@@ -35,7 +35,8 @@ const GroupSideNav = ({owner,name,course,nmembers}) => {
                         </a>
                     </Link>
                 </li>
-                <li>
+                {joined ?
+                <><li>
                     <Link href="/addgroup">
                         <a>
                             <img src="/group-side/new-challenge.svg" alt="New challenge"/>
@@ -66,7 +67,7 @@ const GroupSideNav = ({owner,name,course,nmembers}) => {
                             <span>All Members</span>
                         </a>
                     </Link>
-                </li>
+                </li> </>: "" }
                 {
                     owner ? <li>
                         <Link href="/mycourses">

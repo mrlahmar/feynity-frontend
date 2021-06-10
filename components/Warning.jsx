@@ -15,10 +15,14 @@ const P = styled.p`
         margin-left: 15px;
     }
 `
-const Warning = () => {
+const Warning = ({msg}) => {
     return (
-        <P><img src="form/warning.png" alt="warning icon" />Something went wrong</P>
+        <P><img src="/form/warning.png" alt="warning icon" />{msg}</P>
     )
+}
+
+Warning.defaultProps = {
+    msg: "Something went wrong"
 }
 
 export default Warning

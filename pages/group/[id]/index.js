@@ -10,6 +10,9 @@ import withAuth from '../../../auth/withAuth'
 import Loading from '../../../components/Loading'
 import Button from '../../../components/Button'
 import styled from 'styled-components'
+import { useRouter } from 'next/router'
+import Group from '../../../utils/Group'
+import Warning from '../../../components/Warning'
 
 const Div = styled.div`
     p {
@@ -48,98 +51,30 @@ export const getStaticProps = async (context) => {
 const group = ({group}) => {
     const {user} = useContext(AuthContext)
     const [owner, setOwner] = useState(false)
+    const [wentWrong, setWentWrong] = useState(false)
     const [joined, setJoined] = useState(false)
     const [loading, setLoading] = useState(true)
-    const [err, setErr] = useState(false)
+    const router = useRouter()
 
-    const joinGroup = async () => {
-        setLoading(true)
-        try {
-            // fetch end point
-            const res = await fetch(
-                'http://localhost:5000/api/v1/groups/join',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-auth-token': user.accessToken
-                    },
-                    body: JSON.stringify({
-                        'groupid': group.id
-                    })
-                }
-            )
-
-            const data = await res.json()
-
-            if (res.status === 200 && data.joined === true) {
-                // parse data
-                setJoined(true)
-                setLoading(false)
-            } else {
-                setJoined(false)
-                setLoading(false)
-            }
-        } catch (error) {
-            setJoined(false)
-            setLoading(false)
-        }
-    }
-    
     useEffect(() => {
-        // check joined function
-        const checkJoined = async () => {
-            try {
-                // fetch end point
-                const res = await fetch(
-                    'http://localhost:5000/api/v1/groups/checkJoined',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'x-auth-token': user.accessToken
-                        },
-                        body: JSON.stringify({
-                            'groupid': group.id
-                        })
-                    }
-                )
-
-                const data = await res.json()
-
-                if (res.status === 200 && data.joined === true) {
-                    // parse data
-                    setJoined(true)
-                    setLoading(false)
-                } else {
-                    setJoined(false)
-                    setLoading(false)
-                }
-            } catch (error) {
-                setJoined(false)
-                setLoading(false)
-            }
-        }
-
-        const fetchPosts = async () => {
-            
-            // check owner
+        const initGroupFeed = async () => {
+            // check if he's the owner
             if (group.creator === user.userData.email) {
                 setOwner(true)
                 setJoined(true)
                 setLoading(false)
             } else {
-                checkJoined()
+                // check if joined the group
+                await Group.checkJoined(group,user,setJoined,setLoading)
             }
-
-            // fetch posts
-            /*if (owner === true || joined === true) {
-
-            }*/
         }
 
-        fetchPosts()
+        initGroupFeed()
     }, [])
+
+    const joinGroup = async () => {
+        await Group.joinGroup(router,user,group,setJoined,setLoading,setWentWrong)
+    }
 
     return (
         <>
@@ -147,22 +82,25 @@ const group = ({group}) => {
                 <title>{group.name}</title>
             </Head>
             <GroupStyle>
-                <GroupSideNav owner={owner} name={group.name} course={group.course} nmembers={group.number_of_members}/>
+                <GroupSideNav owner={owner} joined={joined} name={group.name} course={group.course} nmembers={group.number_of_members}/>
                 <div className="container">
                     <main>
-                        {loading ? <Loading/> : joined ?  <><PostForm marginbottom="15px"/>
+                        {wentWrong ? <Warning msg="You must take the course first"/>: ""}
+                        {loading ? <Loading/> : 
+                                joined ?  <><PostForm marginbottom="15px"/>
                                     <h1>Feed</h1>
                                     <Post />
                                     <Post /></>
-                                : <Div>
-                                    <p>You have to join the Group to see the content</p>
-                                    <Button text="Join Group" onClick={joinGroup}/>
+                                : 
+                                <Div>
+                                    <p>You have to join the Group before seeing the posts</p>
+                                    <Button text="Join the Group" onClick={joinGroup}/>
                                 </Div>}
                     </main>
-                    <aside className="suggested">
-                        <h3>Members</h3>
-                        <Members />
-                    </aside>
+                    {joined && !owner? <aside className="suggested">
+                        <h3>Options</h3>
+                        <Button text="Leave Group" color="#ED694A" bgColor="#fff" borderColor="#ED694A" minwidth="250px"/>
+                    </aside> : "" }
                 </div>
             </GroupStyle>
         </>
