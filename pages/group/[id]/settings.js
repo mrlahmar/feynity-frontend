@@ -3,11 +3,11 @@ import { AuthContext } from '../../../context/AuthContext'
 import withAuth from '../../../auth/withAuth'
 import Head from 'next/head'
 import GroupSideNav from '../../../components/GroupSideNav'
-import Input from '../../../components/Input'
 import Button from '../../../components/Button'
-import TextArea from '../../../components/TextArea'
+import Warning from '../../../components/Warning'
 import GroupCard from '../../../components/GroupCard'
 import GroupStyle from '../../../styles/GroupStyle'
+import { useRouter } from 'next/router'
 
 
 export const getStaticPaths = async () => {
@@ -42,19 +42,49 @@ export const getStaticProps = async (context) => {
 function settings({group}) {
     const {user} = useContext(AuthContext)
     const [owner, setOwner] = useState(false)
-    const [loading, setLoading] = useState(true)
+    const [wentWrong, setWentWrong] = useState(false)
+    const router = useRouter()
 
     useEffect(() => {
         const initGroupFeed = async () => {
             // check if he's the owner
             if (group.creator === user.userData.email) {
                 setOwner(true)
-                setLoading(false)
             }
         }
 
         initGroupFeed()
     }, [])
+
+    const deleteGroup = async _ => {
+        setWentWrong(false)
+        try {
+            // fetch end point
+            const res = await fetch(
+                'http://localhost:5000/api/v1/groups/delete',
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': user.accessToken
+                    },
+                    body: JSON.stringify({
+                        'groupid': group.id,
+                        'groupcreator': group.creator
+                    })
+                }
+            )
+
+            if (res.status === 200) {
+                // parse data
+                router.push(`/mygroups`)
+            } else {
+                setWentWrong(true)
+            }
+        } catch (error) {
+            setWentWrong(true)
+        }
+    }
 
     return (
         <>
@@ -66,13 +96,10 @@ function settings({group}) {
                 <div className="container">
                     <main>
                             <h1>Group Settings</h1>
-                            {owner ? <div className="cg-inner">
-                                <form className='form' action="">
-                                    <Input maxwidth="100%" name="groupname" type="text" label="Edit Group Name *" placeholder="e.g Tunisian Python Community"/>
-                                    <Input maxwidth="100%" name="coursetitle" type="text" label="Edit Course Title *" placeholder="e.g Python for Everyone"/>
-                                    <TextArea width="100%" label="Edit Description" name="description" placeholder="This group is for students who started studying web dev through the JavaScript 101: Intro to Web Dev Course" />
-                                    <Button text="Update"/>
-                                </form>
+                            {owner ? 
+                            <div className="cg-inner">
+                                {wentWrong ? <Warning msg="Error Deleting the group"/>: ""}
+                                <Button text="Delete the group" color="#ED694A" bgColor="#fff" borderColor="#ED694A" onClick={deleteGroup}/>
                             </div> : 
                             <div>
                                 <p>You don't have the right to access this page</p>
