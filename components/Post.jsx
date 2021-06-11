@@ -1,26 +1,75 @@
-import Comment from '../components/Comment'
-import CommentForm from '../components/CommentForm'
-import PostButton from '../components/PostButton'
 import PostContainer from '../styles/PostContainer'
+import styled from 'styled-components'
+import { AuthContext } from '../context/AuthContext'
+import { useContext } from 'react'
+import { useRouter } from 'next/router'
 
-const Post = () => {
+const Span = styled.span`
+    display: block;
+    color: red;
+    text-align: right;
+    margin-bottom: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+`
+
+const Post = ({id,title,owner,author,group,content,posttime}) => {
+    const {user} = useContext(AuthContext)
+    const milliseconds = parseInt(posttime)
+    const dateObject = new Date(milliseconds)
+    const humanDateFormat = dateObject.toLocaleString()
+    const router = useRouter()
+
+    const deletePost = async () => {
+        try {
+            // fetch end point
+            const res = await fetch(
+                'http://localhost:5000/api/v1/posts/delete',
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': user.accessToken
+                    },
+                    body: JSON.stringify({
+                        postid: id,
+                        postcreator: author
+                    })
+                }
+            )
+            if (res.status === 200) {
+                // parse data
+                router.reload(`/`)
+            } else {
+                router.reload(`/`)
+            }
+        } catch (error) {
+            router.reload(`/`)
+        }
+    }
+
     return (
         <PostContainer>
             <div className="top">
                 <div className="post-info">
                     <img src="/profile.png" alt="Profile picture"/>
                     <div className="post-details">
-                        <h3>Best Javascript Libraries</h3>
-                        <span>Julia Mary in JavaScript Intermediate</span>
+                        <h3>{title}</h3>
+                        <span>{author} in {group}</span>
                     </div>
                 </div>
-                <span>2h ago</span>
+                <span>
+                    {owner ? <Span className="delete" onClick={deletePost}>Delete your post</Span> : "" }
+                    <span>{humanDateFormat}</span>
+                </span>
             </div>
             
             <div className="post-content">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error cupiditate debitis earum sequi voluptatem! Atque beatae sit quis excepturi illum consectetur provident aut, inventore totam expedita repellat eligendi omnis laboriosam. <span>Read more</span></p>
+                <p>{content}</p>
             </div>
-
+            {/*
             <div className="post-stats">
                 <span>
                     <img src="/post/heart.png" alt="heart icon"/>
@@ -43,7 +92,7 @@ const Post = () => {
 
             <div className="comment-form">
                 <CommentForm src="/profile.png"/>
-            </div>
+            </div>*/}
         </PostContainer>
     )
 }

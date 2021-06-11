@@ -55,6 +55,7 @@ const group = ({group}) => {
     const [wentWrongLeave, setWentWrongLeave] = useState(false)
     const [joined, setJoined] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [posts, setPosts] = useState([])
     const router = useRouter()
 
     useEffect(() => {
@@ -68,6 +69,11 @@ const group = ({group}) => {
                 // check if joined the group
                 await Group.checkJoined(group,user,setJoined,setLoading)
             }
+
+            // if (joined) {
+            //     await Group.fetchFeed(user,group,setPosts,setLoading)
+            // }
+            await Group.fetchFeed(user,group,setPosts,setLoading)
         }
 
         initGroupFeed()
@@ -110,7 +116,7 @@ const group = ({group}) => {
             // post added successfully
             if(res.status === 200) {
                 setLoading(false)
-                console.log(post);
+                router.reload(`/`)
             } else {
                 //bad request
                 setLoading(false)
@@ -133,10 +139,12 @@ const group = ({group}) => {
                     <main>
                         {wentWrong ? <Warning msg="You must take the course first"/>: ""}
                         {loading ? <Loading/> : 
-                                joined ?  <><PostForm onSubmit={addPost} marginbottom="15px"/>
+                                joined ?  
+                                <>
+                                    <PostForm onSubmit={addPost} marginbottom="15px"/>
                                     <h1>Feed</h1>
-                                    <Post />
-                                    <Post /></>
+                                    {posts.map(post => <Post key={post.id} id={post.id} owner={user.userData.email === post.author} author={post.author} posttime={post.posttime} content={post.content} title={post.title} group={post.group}/>)}
+                                </>
                                 : 
                                 <Div>
                                     <p>You have to join the Group before seeing the posts</p>

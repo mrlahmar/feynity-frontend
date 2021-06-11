@@ -99,5 +99,37 @@ export default {
         } catch (error) {
             setWentWrongLeave(true)
         }
+    },
+
+    fetchFeed: async (user,group,setPosts,setLoading) => {
+        try {
+            
+            // fetch end point
+            const res = await fetch(
+                'http://localhost:5000/api/v1/posts/groupfeed',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': user.accessToken
+                    },
+                    body: JSON.stringify({
+                        'groupid': group.id
+                    })
+                }
+            )
+
+            const posts = await res.json()
+
+            if (res.status === 200) {
+                // parse data
+                setPosts(posts)
+                setLoading(false)
+            } else {
+                setLoading(false)
+            }
+        } catch (error) {
+            setLoading(false)
+        }
     }
 }
