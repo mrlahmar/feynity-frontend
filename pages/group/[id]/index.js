@@ -81,6 +81,47 @@ const group = ({group}) => {
         await Group.leaveGroup(router,user,group,setWentWrongLeave)
     }
 
+    const addPost = async event => {
+        event.preventDefault()
+        setLoading(true)
+        
+        try {
+            // fetch endpoint
+            const res = await fetch(
+                'http://localhost:5000/api/v1/posts/create',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': user.accessToken
+                    },
+                    body: JSON.stringify({
+                        title: event.target.posttitle.value,
+                        content: event.target.postcontent.value,
+                        group: group.name,
+                        groupid: group.id
+                    })
+                }
+            )
+        
+            // parse to json
+            const post = await res.json()
+    
+            // post added successfully
+            if(res.status === 200) {
+                setLoading(false)
+                console.log(post);
+            } else {
+                //bad request
+                setLoading(false)
+            }
+            
+        } catch (error) {
+            // Error occured during adding post
+            setLoading(false)
+        }
+    }
+
     return (
         <>
             <Head>
@@ -92,7 +133,7 @@ const group = ({group}) => {
                     <main>
                         {wentWrong ? <Warning msg="You must take the course first"/>: ""}
                         {loading ? <Loading/> : 
-                                joined ?  <><PostForm marginbottom="15px"/>
+                                joined ?  <><PostForm onSubmit={addPost} marginbottom="15px"/>
                                     <h1>Feed</h1>
                                     <Post />
                                     <Post /></>
