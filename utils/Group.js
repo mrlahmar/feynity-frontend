@@ -132,4 +132,38 @@ export default {
             setLoading(false)
         }
     }
+
+    ,
+    fetchMembers: async (group,user,setAllMembers,setLoading) => {
+        setLoading(true)
+        try {
+            
+            // fetch end point
+            const res = await fetch(
+                'http://localhost:5000/api/v1/groups/members',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': user.accessToken
+                    },
+                    body: JSON.stringify({
+                        'groupid': group.id
+                    })
+                }
+            )
+
+            const members = await res.json()
+
+            if (res.status === 200) {
+                // parse data
+                setAllMembers(members)
+                setLoading(false)
+            } else {
+                setLoading(false)
+            }
+        } catch (error) {
+            setLoading(false)
+        }
+    }
 }
