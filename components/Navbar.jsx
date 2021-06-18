@@ -35,14 +35,14 @@ const Navbar = () => {
                                 </a>
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link href="/myactivity">
                                 <a>
                                     <img src="/nav/my-activity-nav.png" alt="My Activity Icon" />
                                     My Activity
                                 </a>
                             </Link>   
-                        </li>
+                        </li> */}
                         <li>
                             <Link href="/search">
                                 <a>
@@ -54,9 +54,9 @@ const Navbar = () => {
                     </ul>
                     <ul className="secondary-nav">
                         <li><span>{user.userData.points} points</span></li>
-                        <li>
+                        {/* <li>
                             <img src="/nav/bell.png" alt="bell icon" />
-                        </li>
+                        </li> */}
                         <li>
                             <img className='profilepic' src="/profile.png" alt="profile picture" />
                         </li>

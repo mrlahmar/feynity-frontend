@@ -283,13 +283,13 @@ const Header = styled.header`
 
     @media (min-width: 1080px) {
         .logged .primary-nav {
-            margin-right: 150px;
+            margin-right: 200px;
         }
     }
 
     @media (min-width: 1440px) {
         .logged .primary-nav {
-            margin-right: 250px;
+            margin-right: 300px;
         }
     }
 

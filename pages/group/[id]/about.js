@@ -73,10 +73,6 @@ function about({group}) {
                     <h1>About</h1>
                     <AboutGroup text={group.description} />
                 </main>
-                <aside className="suggested">
-                    <h3>Suggested Groups</h3>
-                    <GroupCard />
-                </aside>
             </div>
         </GroupStyle>
     </>

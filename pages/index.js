@@ -12,7 +12,7 @@ import fetchFeed from '../utils/Home'
 export default function Home() {
   const {isAuthenticated, user} = useContext(AuthContext)
   const [loading, setLoading] = useState(true)
-  const [posts, setPosts] = useState(true)
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -34,12 +34,12 @@ export default function Home() {
               <h1>Feed</h1>
               {loading 
                 ? <Loading /> 
-                : posts.map(post => <Post key={post.id} id={post.id} owner={user.userData.email === post.author} author={post.author} posttime={post.posttime} content={post.content} title={post.title} group={post.group}/>)
+                : posts.length === 0 ? <p>No posts to show</p> : posts.map(post => <Post key={post.id} id={post.id} owner={user.userData.email === post.author} author={post.authorname} posttime={post.posttime} content={post.content} title={post.title} group={post.group}/>)
               }
             </main>
             <aside className="suggested">
-              <h3>Suggested Groups</h3>
-              <GroupCard />
+              <h3>Options</h3>
+              No available options for now
             </aside>
           </div>
         </HomeStyle> 

@@ -51,14 +51,14 @@ const SideNav = () => {
                         </a>
                     </Link>
                 </li>
-                <li>
+                {/* <li>
                     <Link href="/mychallenges">
                         <a>
                             <img src="/side-nav/my-challenges.svg" alt="My Challenges"/>
                             <span>My Challenges</span>
                         </a>
                     </Link>
-                </li>
+                </li> */}
             </ul>
         </SideStyle>
     )

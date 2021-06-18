@@ -23,6 +23,23 @@ const GroupStyle = styled.div`
         justify-content: center;
     }
 
+    @media (min-width: 1150px) {
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .suggested {
+            h3 {
+                margin-bottom: 20px;
+            }
+
+            display: unset;
+            margin-right: 10px;
+            margin-left: 15px;
+        }
+    }
+
     @media (min-width: 1080px) {
         margin: 120px auto 0;
 

@@ -27,6 +27,14 @@ const PostFormStyle = styled.div`
             width: 100%;
         }
     }
+
+    @media (min-width: 1100px) {
+        width: 690px;
+    }
+
+    @media (min-width: 1400px) {
+        width: 690px;
+    }
 `
 
 

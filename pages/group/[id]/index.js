@@ -104,7 +104,8 @@ const group = ({group}) => {
                         title: event.target.posttitle.value,
                         content: event.target.postcontent.value,
                         group: group.name,
-                        groupid: group.id
+                        groupid: group.id,
+                        authorname: user.userData.name
                     })
                 }
             )
@@ -142,7 +143,7 @@ const group = ({group}) => {
                                 <>
                                     <PostForm onSubmit={addPost} marginbottom="15px"/>
                                     <h1>Feed</h1>
-                                    {posts.map(post => <Post key={post.id} id={post.id} owner={user.userData.email === post.author} author={post.author} posttime={post.posttime} content={post.content} title={post.title} group={post.group}/>)}
+                                    { posts.length === 0 ? <p>No posts to show</p> : posts.map(post => <Post key={post.id} id={post.id} owner={user.userData.email === post.author} author={post.authorname} posttime={post.posttime} content={post.content} title={post.title} group={post.group}/>)}
                                 </>
                                 : 
                                 <Div>
@@ -150,11 +151,11 @@ const group = ({group}) => {
                                     <Button text="Join the Group" onClick={joinGroup}/>
                                 </Div>}
                     </main>
-                    {joined && !owner? <aside className="suggested">
+                    <aside className="suggested">
                         <h3>Options</h3>
                         {wentWrongLeave ? <Warning/> : ""}
-                        <Button text="Leave Group" color="#ED694A" bgColor="#fff" borderColor="#ED694A" minwidth="250px" onClick={leaveGroup}/>
-                    </aside> : "" }
+                        {joined && !owner? <Button text="Leave Group" color="#ED694A" bgColor="#fff" borderColor="#ED694A" minwidth="200px" onClick={leaveGroup}/> : <p>No available options for now</p> }
+                    </aside> 
                 </div>
             </GroupStyle>
         </>

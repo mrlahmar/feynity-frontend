@@ -36,7 +36,7 @@ const GroupSideNav = ({owner,joined,id,name,course,nmembers}) => {
                     </Link>
                 </li>
                 {joined ?
-                <><li>
+                <> {/*<li>
                     <Link href={`/group/${id}/newchallenge`}>
                         <a>
                             <img src="/group-side/new-challenge.svg" alt="New challenge"/>
@@ -59,7 +59,7 @@ const GroupSideNav = ({owner,joined,id,name,course,nmembers}) => {
                             <span>My Challenges</span>
                         </a>
                     </Link>
-                </li>
+                </li> */}
                 <li>
                     <Link href={`/group/${id}/members`}>
                         <a>
