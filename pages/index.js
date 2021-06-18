@@ -34,7 +34,7 @@ export default function Home() {
               <h1>Feed</h1>
               {loading 
                 ? <Loading /> 
-                : posts.length === 0 ? <p>No posts to show</p> : posts.map(post => <Post key={post.id} id={post.id} owner={user.userData.email === post.author} author={post.authorname} posttime={post.posttime} content={post.content} title={post.title} group={post.group}/>)
+                : posts.length === 0 ? <p>No posts to show</p> : posts.map(post => <Post key={post.id} id={post.id} owner={user.userData.email === post.author} author={post.authorname} authmail={post.author} posttime={post.posttime} content={post.content} title={post.title} group={post.group} groupid={post.groupid}/>)
               }
             </main>
             <aside className="suggested">

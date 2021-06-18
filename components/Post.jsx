@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { AuthContext } from '../context/AuthContext'
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const Span = styled.span`
     display: block;
@@ -15,7 +16,7 @@ const Span = styled.span`
     }
 `
 
-const Post = ({id,title,owner,author,group,content,posttime}) => {
+const Post = ({id,title,owner,author,group,content,posttime,groupid,authmail}) => {
     const {user} = useContext(AuthContext)
     const milliseconds = parseInt(posttime)
     const dateObject = new Date(milliseconds)
@@ -35,7 +36,7 @@ const Post = ({id,title,owner,author,group,content,posttime}) => {
                     },
                     body: JSON.stringify({
                         postid: id,
-                        postcreator: author
+                        postcreator: authmail
                     })
                 }
             )
@@ -57,7 +58,7 @@ const Post = ({id,title,owner,author,group,content,posttime}) => {
                     <img src="/profile.png" alt="Profile picture"/>
                     <div className="post-details">
                         <h3>{title}</h3>
-                        <span>{author} in {group}</span>
+                        <span>{author} in <Link href={`/group/${groupid}`}><a className="grpname">{group}</a></Link></span>
                     </div>
                 </div>
                 <span>

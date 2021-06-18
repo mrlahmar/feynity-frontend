@@ -68,6 +68,10 @@ const PostContainer = styled.div`
     @media (min-width: 1400px) {
         width: 690px;
     }
+
+    .grpname {
+        color: #6573FF;
+    }
 `
 
 export default PostContainer
